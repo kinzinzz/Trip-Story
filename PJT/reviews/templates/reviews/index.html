@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<div class="container">
+    {% for review in reviews %}
+    <div class="">
+        {{review.title}}
+        <img src="{{ review.media.url }}" alt="">
+    </div>
+
+</div>
+
+
+{% endblock %}
