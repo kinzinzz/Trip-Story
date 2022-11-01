@@ -1,9 +1,83 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
+{% load django_bootstrap5 %}
 
+
+{% block content %}
+<div class="" style="
+    background-image: url({% static 'images/index_background.png' %});
+    height : 320px;
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    }"> 
+    <h1 class="">나만의 여행 이야기<br>트립 스토리!</h1>
+    <label for="exampleDataList" class="form-label" style="width:70%;">지역, 여행일정을 검색해 보세요!</label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." style="width:70%;">
+        <datalist id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+        </datalist>
+</div>
 <div class="container">
-    Hello Trip_Story
+    <h2 class="text-center my-5"> 트립 스토리에서 여행을 시작하세요! </h2>
+    <div class='d-flex justify-content-evenly row'>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">여행 정보</h5>
+                <p class="card-text">지역의 명소를 확인하세요</p>
+                <a href="{% url 'places:inform' %}" class="btn btn-primary">여행 정보 보러가기</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">여행 리뷰</h5>
+                <p class="card-text">나의 여행 리뷰를 만들어 보세요</p>
+                <a href="#" class="btn btn-primary">여행 리뷰 작성하기</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">커뮤니티</h5>
+                <p class="card-text">커뮤니티에서 소통을 해요</p>
+                <a href="#" class="btn btn-primary">커뮤니티</a>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center my-5"> 인기 여행 일정 </h2>
+    <div class='d-flex justify-content-evenly row'>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
