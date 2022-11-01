@@ -32,15 +32,6 @@ class ReviewForm(forms.ModelForm):
         ),
     )
 
-    content = forms.TextField(
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "내용을 입력하세요",
-            }
-        ),
-    )
-
     start_day = forms.DateTimeField(
         widget=NumberInput(attrs={"type": "date"}), label="일정시작일"
     )
