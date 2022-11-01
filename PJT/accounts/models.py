@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager,
 )
+
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
@@ -55,9 +56,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=10,
     )
     profile_image = ProcessedImageField(
-        upload_to="profile/",
+        upload_to="profile",
         blank=True,
-        processors=[ResizeToFill(720, 480)],
+        processors=[ResizeToFill(300, 480)],
         format="JPEG",
         options={"quality": 100},
     )
