@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <form action="">
+    {% csrf_token %}
+    {% bootstrap_form review_form %}
+    <input type="sbumit" class="btn btn-primary" value="ok">
+  </form>
+
+{% endblock %}
