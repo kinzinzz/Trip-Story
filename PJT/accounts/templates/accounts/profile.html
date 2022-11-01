@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<div class="container d-flex flex-column align-items-center py-5">
+    <div class="card mt-5 mb-4 border border-black" style="width: 25rem;">
+        <div class="card-header border border-black text-black opacity-75">
+            <h5 class="fs-3 fw-bold text-center my-1">
+                {{ user.nickname }}님의 프로필
+            </h5>
+        </div>
+        <div class="card-body d-flex justify-content-center">
+            {% if user.profile_image %}
+            <img src="{{ user.profile_image.url }}" alt="">
+            {% endif %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <i class="bi bi-person-fill me-2"></i>
+                {{ user.name }}
+            </li>
+            <li class="list-group-item">
+                <i class="bi bi-envelope-fill me-2"></i>
+                {{ user.email }}
+            </li>
+        </ul>
+    </div>
+    <a class="btn" href="{% url 'accounts:update' %}" role="button">회원정보 수정</a>
+</div>
+{% endblock content %}
