@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<!-- 리뷰내용 임시로 제목과 타이틀만 출력-->
+<div class="review_container">
+    <p>{{ review.title }}</p>
+    <img src="{{ review.media.url }}" alt="">
+    <!-- 좋아요 동기적 구현 -->
+    <a href="{% url 'reviews:like' reivew.pk %}">좋아요</a>
+    <span>{{ likedCount }}</span>
+</div>
+
+{% endblock %}
