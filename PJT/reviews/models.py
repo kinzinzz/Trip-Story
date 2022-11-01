@@ -1,9 +1,7 @@
-
 from email.mime import image
 from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
-from places import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 import datetime
