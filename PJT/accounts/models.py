@@ -64,6 +64,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    followings = models.ManyToManyField(
+        "self", symmetrical=False, related_name="followers"
+    )
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [
         "nickname",
