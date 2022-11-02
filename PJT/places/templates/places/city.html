@@ -8,6 +8,12 @@
     <img class="" src="{{ city.image2.url }}" alt="">
     <img class="" src="{{ city.image3.url }}" alt="">
     {{ city.name }}
-
+    <a class="" href="{% url 'places:createspot' city.name %}">여행장소 만들기</a>
+</div>
+<div class="container">
+    {% for spot in spots %}
+    <a class="" href="{% url 'places:spot' city.name spot.pk %}">{{ spot.title }}</a>
+    <img src="{{ spot.thumbnail.url }}">
+    {% endfor %}
 </div>
 {% endblock %}
