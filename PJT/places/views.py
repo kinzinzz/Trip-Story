@@ -15,7 +15,9 @@ def inform(request):
 
 
 def place(request):
+
     return render(request, "places/place.html")
+
 
 
 def city(request, cityname):
