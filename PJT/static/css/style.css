@@ -7,6 +7,16 @@ font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
 *{
   font-family: 'Noto Sans KR', sans-serif;
 }
+.card-text {
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.2;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .navbar {
   position: sticky;
   top:0;
@@ -17,6 +27,7 @@ font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
   font-size: 1.3rem;
   font-weight: 600;
 }
+
 .main-title {
   font-family: 'Permanent Marker', cursive;
   font-size :6rem;
@@ -24,6 +35,7 @@ font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
   text-align: center;
   color:rgb(255, 255, 255);
 }
+
 .main-title-sub {
   font-family: 'Oswald', sans-serif;
   font-size :2rem;
@@ -31,6 +43,7 @@ font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
   text-align: center;
   color:rgb(255, 255, 255);
 }
+
 .content-title {
   font-family: 'Oswald', sans-serif;
   margin: 4rem 0 3rem 0;
@@ -52,4 +65,8 @@ font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
 
 .carousel-title {
   font-size: 3rem;
+}
+
+.best3 {
+  overflow: hidden;
 }

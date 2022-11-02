@@ -52,6 +52,7 @@ def spot(request, cityname, pk):
     spot = Spot.objects.get(pk=pk)
     context = {
         "spot": spot,
+        "cityname":cityname,
     }
     return render(request, "places/spot.html", context)
 
