@@ -10,41 +10,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    }"> 
+    ">
     <h1 class="">어디로 여행을 가시나요!?
     </h1>
 </div>
 <div class="container">
-  <h2 class="text-center my-5"> 여행지 </h2>
-  <div class="card text-center bg-light">
-    <h4>주요 도시 | 서울   부산   제주   경주   강릉   양평   속초   전주</h4>
-  </div>
-  <h2 class="text-center my-5"> 인기 여행지 TOP 3 </h2>
-  <div class='d-flex justify-content-evenly row'>
-      <div class="card col-4" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-      </div>
-      <div class="card col-4" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-      </div>
-      <div class="card col-4" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-      </div>
-  </div>
+    <h2 class="text-center my-5"> 여행지 </h2>
+    <div class="card text-center bg-light">
+        <h4>주요 도시 |
+            {% for city in citys %}
+            <a class="text-black text-decoration-none" href="{% url 'places:city' city.name %}">{{ city.name }}</a>
+            {% endfor %}
+        </h4>
+    </div>
+    {% if user.is_authenticated %}
+    <div>
+        <a class="btn btn-primary" href="{% url 'places:citycreate' %}">도시 추가</a>
+    </div>
+    {% endif %}
+    <h2 class="text-center my-5"> 인기 여행지 TOP 3 </h2>
+    <div class='d-flex justify-content-evenly row'>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card col-4" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
