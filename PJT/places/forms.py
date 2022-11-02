@@ -1,5 +1,6 @@
 from django import forms
-from .models import City, Spot
+from .models import City, Spot, Spotcomment
+from .widgets import starWidget
 
 
 class CityForm(forms.ModelForm):
@@ -24,4 +25,28 @@ class SpotForm(forms.ModelForm):
             "themes": "테마",
             "thumbnail": "썸네일 사진",
             "image": "이미지",
+        }
+
+
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "댓글을 남겨보세요 💬",
+            }
+        ),
+    )
+
+    class Meta:
+        model = Spotcomment
+        fields = [
+            "content",
+            "grade",
+        ]
+        labels = {
+            "grade": "",
+        }
+        widgets = {
+            "grade": starWidget,
         }

@@ -10,4 +10,5 @@ urlpatterns = [
     path("place/", views.place, name="place"),
     path("<cityname>/<int:pk>/", views.spot, name="spot"),
     path("<cityname>/createspot", views.createspot, name="createspot"),
+    path("<cityname>/<int:pk>/comments", views.spotcomment, name="spotcomment"),
 ]

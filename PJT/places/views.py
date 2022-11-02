@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import City, Spot
-from .forms import CityForm, SpotForm
+from .forms import CityForm, SpotForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -17,7 +17,6 @@ def inform(request):
 def place(request):
 
     return render(request, "places/place.html")
-
 
 
 def city(request, cityname):
@@ -50,9 +49,10 @@ def citycreate(request):
 
 def spot(request, cityname, pk):
     spot = Spot.objects.get(pk=pk)
+    comment_form = CommentForm()
     context = {
         "spot": spot,
-        "cityname":cityname,
+        "comment_form": comment_form,
     }
     return render(request, "places/spot.html", context)
 
@@ -77,3 +77,15 @@ def createspot(request, cityname):
     }
 
     return render(request, "places/createspot.html", context)
+
+
+@login_required
+def spotcomment(request, cityname, pk):
+    spot = Spot.objects.get(pk=pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.spot = spot
+        comment.user = request.user
+        comment.save()
+    return redirect("articles:detail", cityname, pk)
