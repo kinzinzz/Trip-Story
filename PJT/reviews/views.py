@@ -7,13 +7,16 @@ from django.http import JsonResponse
 # 리뷰 인덱스
 def index(request):
     # 베스트3 리뷰 context
-
+    reviews = models.Review.objects.order_by('-pk')
     # like 많은순으로 정렬하고 0~2등 가져오기
     # ??
     # reviews = models.Review.objects.all().order_by("-like.count()")[:2]
+    context={
+        'reviews' : reviews
+    }
     return render(
         request,
-        "reviews/index.html",  # {'reviews':reviews}
+        "reviews/index.html", context  # {'reviews':reviews}
     )
 
 
