@@ -7,14 +7,15 @@ from django.contrib.auth.decorators import login_required
 
 
 def inform(request):
-citys = City.objects.all()
+    citys = City.objects.all()
     context = {
         "citys": citys,
     }
     return render(request, "places/inform.html", context)
 
+
 def place(request):
-  return render(request, 'places/place.html')
+    return render(request, "places/place.html")
 
 
 def city(request, cityname):
