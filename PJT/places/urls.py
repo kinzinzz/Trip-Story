@@ -5,4 +5,5 @@ app_name = "places"
 
 urlpatterns = [
   path('inform/',views.inform,name='inform'),
+  path('place/', views.place, name='place')
 ]
