@@ -2,26 +2,26 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from . import forms
 from django.http import JsonResponse
-
+from django.db.models import Count
 
 # 리뷰 인덱스
 def index(request):
-    # 베스트3 리뷰 context
-
     # like 많은순으로 정렬하고 0~2등 가져오기
-    # ??
-    # reviews = models.Review.objects.all().order_by("-like.count()")[:2]
-    return render(
-        request,
-        "reviews/index.html",  # {'reviews':reviews}
+    reviews = (
+        models.Review.objects.all()
+        .annotate(like_count=Count("like"))
+        .order_by("-like_count")[0:3]
     )
+
+    print(reviews)
+    return render(request, "reviews/index.html", {"reviews": reviews})
 
 
 # 리뷰 생성
 def create(request):
 
     if request.method == "POST":
-        form = forms.ReviewForm(request.POST, request.FIELS)
+        form = forms.ReviewForm(request.POST, request.FILES)
         if form.is_valid():
             review = form.save(commit=False)
             review.user = request.user
@@ -40,7 +40,7 @@ def detail(request, review_pk):
 
     review = get_object_or_404(models.Review, pk=review_pk)
 
-    return render(request, "reviews/detail", {"review": review})
+    return render(request, "reviews/detail.html", {"review": review})
 
 
 # 리뷰 수정
@@ -48,10 +48,10 @@ def update(request, review_pk):
     review = get_object_or_404(models.Review, pk=review_pk)
 
     if request.method == "POST":
-        form = forms.ReviewForm(request.POST, request.FIELS, instance=review)
+        form = forms.ReviewForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
             form.save()
-            return redirect("reviews:index")
+            return redirect("reviews:detail", review_pk)
 
     else:
         form = forms.ReviewForm(instance=review)
@@ -78,15 +78,7 @@ def like(request, review_pk):
     else:
         review.like.add(request.user)
 
-    likeCount = review.like.count()
-
-    return render(
-        request,
-        "reviews/detail.html",
-        {
-            "likeCount": likeCount,
-        },
-    )
+    return redirect("reviews:detail", review_pk)
 
 
 # 좋아요 기능 비동기

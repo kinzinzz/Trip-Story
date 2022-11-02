@@ -1,3 +1,4 @@
+from importlib.resources import contents
 from . import models
 from django import forms
 from django.forms.widgets import NumberInput
@@ -12,7 +13,7 @@ city_choices = [
 
 # 리뷰 작성폼
 class ReviewForm(forms.ModelForm):
-    city = forms.ChoiceField(label="도시", choices=city_choices, required=True)
+    city = forms.ChoiceField(label="리뷰 도시선택", choices=city_choices, required=True)
 
     title = forms.CharField(
         label="",
@@ -31,16 +32,6 @@ class ReviewForm(forms.ModelForm):
             }
         ),
     )
-
-    content = forms.TextField(
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "내용을 입력하세요",
-            }
-        ),
-    )
-
     start_day = forms.DateTimeField(
         widget=NumberInput(attrs={"type": "date"}), label="일정시작일"
     )
@@ -60,3 +51,14 @@ class ReviewForm(forms.ModelForm):
             "start_day",
             "end_day",
         )
+
+        widgets = {
+            "content": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 10,
+                    "placeholder": "리뷰내용을 입력하세요",
+                },
+            ),
+        }
+        labels = {"content": ""}

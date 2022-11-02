@@ -1,9 +1,5 @@
-
-from email.mime import image
-from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
-from places import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 import datetime
@@ -21,23 +17,18 @@ class Review(models.Model):
     )
     """
 
-    """
-    초이스
-    
-        city_choices = [
-            (None, "선택"),
-            ("서울", "서울"),
-            ("제주", "제주"),
-            ("부산", "부산"),
-        ]
-        city = models.CharField(max_length=2, choices=city_choices, default="선택")
-
-    """
+    city_choices = [
+        (None, "선택"),
+        ("서울", "서울"),
+        ("제주", "제주"),
+        ("부산", "부산"),
+    ]
+    city = models.CharField(max_length=2, choices=city_choices, default="선택")
 
     # )
 
     # 좋아요
-    like = models.ForeignKey(User, related_name="review_like", on_delete=models.CASCADE)
+    like = models.ManyToManyField(User, related_name="review_like", blank=True)
 
     # 리뷰 내용
     content = models.TextField()
