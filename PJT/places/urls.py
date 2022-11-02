@@ -7,5 +7,7 @@ urlpatterns = [
     path("inform/", views.inform, name="inform"),
     path("<cityname>", views.city, name="city"),
     path("citycreate/", views.citycreate, name="citycreate"),
-    path('place/', views.place, name='place'),
+    path("place/", views.place, name="place"),
+    path("<cityname>/<int:pk>/", views.spot, name="spot"),
+    path("<cityname>/createspot", views.createspot, name="createspot"),
 ]
