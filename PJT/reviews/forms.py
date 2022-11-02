@@ -32,6 +32,7 @@ class ReviewForm(forms.ModelForm):
             }
         ),
     )
+
     start_day = forms.DateTimeField(
         widget=NumberInput(attrs={"type": "date"}), label="일정시작일"
     )

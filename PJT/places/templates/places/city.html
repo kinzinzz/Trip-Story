@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <img class="" src="{{ city.image1.url }}" alt="">
+    <img class="" src="{{ city.image2.url }}" alt="">
+    <img class="" src="{{ city.image3.url }}" alt="">
+    {{ city.name }}
+
+</div>
+{% endblock %}

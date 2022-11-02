@@ -3,4 +3,9 @@ from . import views
 
 app_name = "places"
 
-urlpatterns = []
+urlpatterns = [
+    path("inform/", views.inform, name="inform"),
+    path("<cityname>", views.city, name="city"),
+    path("citycreate/", views.citycreate, name="citycreate"),
+    path('place/', views.place, name='place'),
+]

@@ -12,8 +12,6 @@ def index(request):
         .annotate(like_count=Count("like"))
         .order_by("-like_count")[0:3]
     )
-
-    print(reviews)
     return render(request, "reviews/index.html", {"reviews": reviews})
 
 
