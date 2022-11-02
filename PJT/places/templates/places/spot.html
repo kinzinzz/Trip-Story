@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<div>
+    장소 : {{ spot.title }}
+    <br>
+    내용 : {{ spot.content }}
+    <br>
+    테마 : {{ spot.themes }}
+    <br>
+    작성자 : {{ spot.user.nickname }}
+    <br>
+    도시 : {{ spot.city.name }}
+    <br>
+    <img src="{{ spot.image.url }}" alt="장소이미지">
+    <a href="{% url 'places:city' spot.city.name %}">back</a>
+</div>
+
+{% endblock content %}

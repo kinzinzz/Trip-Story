@@ -4,7 +4,7 @@ from imagekit.processors import ResizeToFill
 from django.conf import settings
 
 # Create your models here.
-class Place(models.Model):
+class Spot(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     THEME_CHOICES = (
