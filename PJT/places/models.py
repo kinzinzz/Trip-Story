@@ -20,15 +20,15 @@ class Spot(models.Model):
     city = models.ForeignKey("City", on_delete=models.CASCADE)
     thumbnail = ProcessedImageField(
         upload_to="places",
-        processors=[ResizeToFill(100, 80)],
+        processors=[ResizeToFill(360, 300)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 100},
     )
     image = ProcessedImageField(
         upload_to="places",
         processors=[ResizeToFill(720, 480)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 100},
     )
 
 
@@ -36,21 +36,21 @@ class City(models.Model):
     name = models.CharField(max_length=20)
     thumbnail = ProcessedImageField(
         upload_to="avatars",
-        processors=[ResizeToFill(100, 80)],
+        processors=[ResizeToFill(360, 300)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 100},
     )
     image1 = ProcessedImageField(
         upload_to="avatars",
         processors=[ResizeToFill(720, 480)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 100},
     )
     image2 = ProcessedImageField(
         upload_to="avatars",
         processors=[ResizeToFill(720, 480)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 100},
     )
     image3 = ProcessedImageField(
         upload_to="avatars",
