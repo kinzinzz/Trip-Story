@@ -5,11 +5,34 @@
 
 <!-- 리뷰내용 임시로 제목과 타이틀만 출력-->
 <div class="review_container">
-    <p>{{ review.title }}</p>
-    <img src="{{ review.media.url }}" alt="">
-    <!-- 좋아요 동기적 구현 -->
-    <a href="{% url 'reviews:like' reivew.pk %}">좋아요</a>
-    <span>{{ likedCount }}</span>
+
+    <h1>리뷰제목:{{review.title}}</h1>
+    <h1>리뷰부제:{{review.subtitle}}</h1>
+    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt=""></a>
+    <ul>
+        <li>
+            리뷰도시:{{ review.city }}
+        </li>
+        <li>
+            좋아요: {{ review.like.all | length }}
+        </li>
+        <li>
+            리뷰내용: {{ review.content }}
+        </li>
+        <li>
+            작성시간:{{ review.created_at }}
+        </li>
+        <li>
+            여행기간: {{ review.start_day }} ~ {{ review.end_day }}
+        </li>
+        <li>
+            리뷰작성자 : {{ review.user}}
+        </li>
+        <!-- 좋아요 동기적 구현 -->
+        <a href="{% url 'reviews:like' review.pk %}">좋아요</a> <span>{{ review.like.all | length }}</span>
+
+        <a href="{% url 'reviews:update' review.pk %}">리뷰수정</a>
+        <a href="{% url 'reviews:delete' review.pk %}">리뷰삭제</a>
 </div>
 
 {% endblock %}

@@ -17,23 +17,18 @@ class Review(models.Model):
     )
     """
 
-    """
-    초이스
-    
-        city_choices = [
-            (None, "선택"),
-            ("서울", "서울"),
-            ("제주", "제주"),
-            ("부산", "부산"),
-        ]
-        city = models.CharField(max_length=2, choices=city_choices, default="선택")
-
-    """
+    city_choices = [
+        (None, "선택"),
+        ("서울", "서울"),
+        ("제주", "제주"),
+        ("부산", "부산"),
+    ]
+    city = models.CharField(max_length=2, choices=city_choices, default="선택")
 
     # )
 
     # 좋아요
-    like = models.ForeignKey(User, related_name="review_like", on_delete=models.CASCADE)
+    like = models.ManyToManyField(User, related_name="review_like", blank=True)
 
     # 리뷰 내용
     content = models.TextField()
