@@ -17,6 +17,23 @@
     <br>
     <img src="{{ spot.image.url }}" alt="장소이미지">
     <a href="{% url 'places:city' spot.city.name %}">back</a>
+    <div class="container p-5">
+        <form action="{% url 'places:spotcomment' spot.city.name spot.pk %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-8">
+                    {% bootstrap_field comment_form.content %}
+                </div>
+                <div class="col-2">
+                    {% bootstrap_field comment_form.grade %}
+                </div>
+                <div class="col-2">
+                    <input class="btn btn-small btn-success " type="submit">
+                </div>
+
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock content %}
