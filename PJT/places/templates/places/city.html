@@ -67,6 +67,7 @@
         </button>
     </div>
     <h2 class="content-title text-center fw-bold"> {{city.name}}의 인기 관광지 BEST 3 </h2>
+    <p class="content-sub-title text-center">{{city.name}}의 인기 관광지에 방문해 보세요!</p>
     <div class='d-flex justify-content-evenly row row-cols-12 best3'>
         {% for spot, star in spots %}
         <div class="card col-4 shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
@@ -81,7 +82,7 @@
         {% endfor %}
     </div>
     <h2 class="content-title text-center"> 여행지 인기 맛집 </h2>
-
+    <p class="content-sub-title text-center">{{city.name}}의 인기 맛집에 방문해 보세요!</p>
     <div class='d-flex justify-content-evenly row'>
         <div class="card col-4 shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ city.thumbnail.url }}" class="card-img-top" alt="...">

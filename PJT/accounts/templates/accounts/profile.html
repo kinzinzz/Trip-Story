@@ -2,14 +2,14 @@
 {% block content %}
 {% load django_bootstrap5 %}
 
-<div class="container d-flex flex-column align-items-center py-3">
-    <div class="card mt-5 mb-4 border border-black ">
+<div class="container d-flex flex-column align-items-center py-5">
+    <div class="card my-5 border border-black shadow p-3 bg-body rounded">
         <div class="card-header border border-black text-black opacity-75">
             <h5 class="fs-3 fw-bold text-center my-1">
                 {{ person.nickname }}님의 프로필
             </h5>
         </div>
-        <div class="card-body d-flex justify-content-center row row-col-md-2 p-3 row-col-1">
+        <div class="card-body d-flex justify-content-center row row-col-md-2 p-3 row-col-1 ">
             <div class="col-md-5 col-6 text-center">
                 {% if person.profile_image %}
                 <img class="w-100" src="{{ user.profile_image.url }}" alt="">
@@ -34,7 +34,7 @@
                         </h5>
                     </li>
 
-                    <li class="list-group-item py-md-4 py-2 d-flex justify-content-end">
+                    <li class="list-group-item py-md-4 py-2 d-flex justify-content-center">
                         {% if request.user != person %}
                         <form action="{% url 'accounts:follow' person.pk %}" method="POST">
                             {% csrf_token %}
@@ -45,7 +45,7 @@
                             {% endif %}
                         </form>
                         {% else %}
-                        <a class="btn btn-success" href="{% url 'accounts:update' %}" role="button">회원정보 수정</a>
+                        <a class="btn btn-dark" href="{% url 'accounts:update' %}" role="button">회원정보 수정</a>
                         {% endif %}
                     </li>
 
