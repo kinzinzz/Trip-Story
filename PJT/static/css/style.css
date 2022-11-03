@@ -73,11 +73,11 @@ a{
 }
 
 .hvr_1_list{
-  padding-left: 35vw;
+  padding-left: 35%;
 }
 
 .hvr_2_list{
-  padding-left: 44vw;
+  padding-left: 35%;
 }
 
 .hvr_hide {
@@ -102,8 +102,6 @@ a{
   visibility: visible;
   height: 20vh;
 }
-
-
 
 .main-title {
   font-family: 'Permanent Marker', cursive;
@@ -138,6 +136,11 @@ a{
 .index-card {
   width:100;
   margin-top: 0.7rem;
+}
+
+.card-img-top:hover{
+  transform: scale(1.1);
+  transition-duration: 3s;
 }
 
 .carousel-font {
