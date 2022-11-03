@@ -23,6 +23,9 @@ def place(request):
 def city(request, cityname):
     city = City.objects.get(name=cityname)
     spots = Spot.objects.filter(city=city)
+    cityspots = City.objects.prefetch_related("spot_set").get(name=cityname)
+    for cityspot in cityspots:
+        print(cityspot.spot_set)
     context = {
         "city": city,
         "spots": spots,
