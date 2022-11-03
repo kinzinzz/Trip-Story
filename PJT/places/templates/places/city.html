@@ -90,20 +90,22 @@
         </button>
     </div>
     <h2 class="content-title text-center fw-bold"> {{city.name}}의 인기 관광지 BEST 3 </h2>
+    <p class="content-sub-title text-center">{{city.name}}의 인기 관광지에 방문해 보세요!</p>
     <div class='d-flex justify-content-evenly row row-cols-12 best3'>
-        {% for spot in spots %}
+        {% for spot, star in spots %}
         <div class="card col-4 shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ spot.thumbnail.url }}" class="card-img-top index-card" alt="...">
             <div class="card-body d-flex flex-column align-items-center mb-3">
                 <h5 class="card-title">{{ spot.title }}</h5>
                 <p class="card-text">{{ spot.content }}</p>
+                <p>평점 : <span class="text-warning">{{ star }}</span></p>
                 <a href="{% url 'places:spot' city.name spot.pk %}" class="btn btn-outline-dark">여행 정보 바로가기</a>
             </div>
         </div>
         {% endfor %}
     </div>
     <h2 class="content-title text-center"> 여행지 인기 맛집 </h2>
-
+    <p class="content-sub-title text-center">{{city.name}}의 인기 맛집에 방문해 보세요!</p>
     <div class='d-flex justify-content-evenly row'>
         <div class="card col-4 shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ city.thumbnail.url }}" class="card-img-top" alt="...">
