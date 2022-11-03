@@ -56,6 +56,29 @@
         </div>
         <div class="col-3">
             <h2>{{ city.name }}날씨</h2>
+
+            <!-- 날씨 템플릿 -->
+            <!-- {% for weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="날씨상태 아이콘"> 
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature }}° C</span>
+                                        <br> {{ weather.description }} 
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %} -->
         </div>
     </div>
 </div>
@@ -66,7 +89,8 @@
             여행 장소 추가하기
         </button>
     </div>
-    <h2 class="content-title text-center fw-bold"> {{city.name}}의 인기 관광지 BEST 3 </h2>
+    <h2 class="content-title text-center fw-bold"> {{city.name}}의 인기 관광지 BEST 3 <a class="fs-6"
+            href="{% url 'places:allspots' city.name %}">더 보기</a></h2>
     <p class="content-sub-title text-center">{{city.name}}의 인기 관광지에 방문해 보세요!</p>
     <div class='d-flex justify-content-evenly row row-cols-12 best3'>
         {% for spot, star in spots %}

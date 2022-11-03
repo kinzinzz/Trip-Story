@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,49 +62,35 @@
     </div>
   </nav>
 
-  
-  <nav
-      class="navbar-large navbar navbar-expand-lg container-fluid justify-content-center"
-    >
+  <nav class="navbar-large navbar navbar-expand-lg container-fluid justify-content-center">
     <div class="nav-width d-flex justify-content-center">
       <div class="front_nav_item d-flex">
         <a class="navbar-brand d-flex align-items-center pe-5" href="{% url 'articles:index' %}">
           <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav d-flex align-items-center nav-center">
             <li class="hvr_1 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="{% url 'places:inform' %}"
-                style="font-size: 1.5rem;"
-                >여행 정보</a
-              >
+              <a class="nav-link fw-bold rounded-pill" href="{% url 'places:inform' %}" style="font-size: 1.5rem;">여행
+                정보</a>
               <div class="navbar-small-hover hvr_1_list hvr_hide">
                 <ul class="navbar-hover-list">
-                  <li class="navbar-hover-list-item"><a href="{% url 'places:inform' %}">지역별로 보기</a></li>
-                  <li class="navbar-hover-list-item"><a href="{% url 'places:inform' %}">인기순으로 보기</a></li>
+                  <li class="navbar-hover-list-item">
+                    <a href="{% url 'places:inform' %}">지역별로 보기</a>
+                  </li>
+                  <li class="navbar-hover-list-item">
+                    <a href="{% url 'places:inform' %}">인기순으로 보기</a>
+                  </li>
                 </ul>
               </div>
             </li>
             <li class="hvr_2 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="{% url 'reviews:index' %}"
-                style="font-size: 1.5rem;"
-                >여행 리뷰</a
-              >
+              <a class="nav-link fw-bold rounded-pill" href="{% url 'reviews:index' %}" style="font-size: 1.5rem;">여행
+                리뷰</a>
               <div class="navbar-small-hover hvr_2_list hvr_hide">
                 <ul class="navbar-hover-list">
                   <li class="navbar-hover-list-item">리뷰 작성</li>
@@ -114,12 +99,7 @@
               </div>
             </li>
             <li class="hvr_3 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="#"
-                style="font-size: 1.5rem;"
-                >커뮤니티</a
-              >
+              <a class="nav-link fw-bold rounded-pill" href="#" style="font-size: 1.5rem;">커뮤니티</a>
             </li>
           </ul>
           {% if user.is_authenticated %}
