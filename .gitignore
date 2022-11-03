@@ -1,3 +1,13 @@
-venv/
+# Created by https://www.toptal.com/developers/gitignore/api/django,python,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,python,windows
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
 db.sqlite3
-.pyc
+db.sqlite3-journal
+media
+venv
