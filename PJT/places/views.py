@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def inform(request):
-citys = City.objects.all()
+    citys = City.objects.all()
     context = {
         "citys": citys,
     }
