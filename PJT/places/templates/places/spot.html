@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb mt-3">
             <li class="breadcrumb-item"><a href="{% url 'places:inform' %}">여행지</a></li>
             <li class="breadcrumb-item"><a href="{% url 'places:city' spot.city.name %}">{{ spot.city.name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ spot.title }}</li>
