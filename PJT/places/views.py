@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import City, Spot, Spotcomment
 from .forms import CityForm, SpotForm, CommentForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Avg
+from django.db.models import Avg, Count
 
 # Create your views here.
 
@@ -22,10 +22,41 @@ def place(request):
 
 def city(request, cityname):
     city = City.objects.get(name=cityname)
-    spots = Spot.objects.filter(city=city)
-    cityspots = City.objects.prefetch_related("spot_set").get(name=cityname)
-    for cityspot in cityspots:
-        print(cityspot.spot_set)
+    grades = (
+        Spotcomment.objects.select_related("spot")
+        .values("spot")
+        .annotate(avg=Avg("grade"))
+        .order_by("-avg")
+        .filter(spot__city=city)
+    )
+    spots = []
+    for grade in grades:
+        star = ""
+        if grade["avg"]:
+            if grade["avg"] > 4.9:
+                star = "★★★★★"
+            elif grade["avg"] > 4.4:
+                star = "★★★★☆"
+            elif grade["avg"] > 3.9:
+                star = "★★★★"
+            elif grade["avg"] > 3.4:
+                star = "★★★☆"
+            elif grade["avg"] > 2.9:
+                star = "★★★"
+            elif grade["avg"] > 2.4:
+                star = "★★☆"
+            elif grade["avg"] > 1.9:
+                star = "★★"
+            elif grade["avg"] > 1.4:
+                star = "★☆"
+            elif grade["avg"] > 0.9:
+                star = "★"
+            elif grade["avg"] > 0.4:
+                star = "☆"
+            else:
+                star = "별점 없음"
+        spots.append((Spot.objects.get(pk=grade["spot"]), star))
+
     context = {
         "city": city,
         "spots": spots,
