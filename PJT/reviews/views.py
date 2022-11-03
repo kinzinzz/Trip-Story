@@ -4,24 +4,26 @@ from . import forms
 from django.http import JsonResponse
 from django.db.models import Count
 from .models import Review
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
+from django.core.paginator import Paginator
+
 # 리뷰 인덱스
 def index(request):
     # 페이징 처리
-    page_all = Review.objects.all()
-    paginator = Paginator(page_all, 6)
-    page = request.GET.get('page')
-    page_list = paginator.get_page(page)
+
     # like 많은순으로 정렬하고 0~2등 가져오기
     reviews = (
         models.Review.objects.all()
         .annotate(like_count=Count("like"))
         .order_by("-like_count")[0:6]
     )
-    return render(request, "reviews/index.html", {"reviews": reviews, "page_list": page_list })
+    return render(request, "reviews/index.html", {"reviews": reviews})
 
 
 # 리뷰 생성
+@login_required(login_url="accounts:login")
 def create(request):
 
     if request.method == "POST":
@@ -48,8 +50,13 @@ def detail(request, review_pk):
 
 
 # 리뷰 수정
+@login_required(login_url="accounts:login")
 def update(request, review_pk):
     review = get_object_or_404(models.Review, pk=review_pk)
+    # 리뷰 작성자가 아니면 수정 권한 없음
+    if request.user != review.user1:
+        messages.error(request, "권한이 없습니다.")
+        return redirect("reviews:detail", review_pk)
 
     if request.method == "POST":
         form = forms.ReviewForm(request.POST, request.FILES, instance=review)
@@ -64,15 +71,20 @@ def update(request, review_pk):
 
 
 # 리뷰 삭제
+@login_required(login_url="accounts:login")
 def delete(request, review_pk):
     review = get_object_or_404(models.Review, pk=review_pk)
-
+    # 리뷰 작성자가 아니면 삭제 권한 없음
+    if request.user != review.user1:
+        messages.error(request, "권한이 없습니다.")
+        return redirect("reviews:detail", review_pk)
     review.delete()
 
     return redirect("reviews:index")
 
 
 #  리뷰 좋아요
+@login_required(login_url="accounts:login")
 def like(request, review_pk):
 
     review = get_object_or_404(models.Review, pk=review_pk)
