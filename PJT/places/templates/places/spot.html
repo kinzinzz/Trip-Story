@@ -92,7 +92,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     {% if request.user == comment.user %}
-                    <form action="" method="POST">
+                    <form action="{% url 'places:comment_delete' spot.city.name spot.pk comment.pk %}" method="POST">
                         {% csrf_token %}
                         <input class="text-danger bg-white ms-3 border-1 border-danger text-decoration-none rounded-2"
                             type="submit" value="삭제">

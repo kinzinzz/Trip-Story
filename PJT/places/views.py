@@ -55,9 +55,13 @@ def inform(request):
     return render(request, "places/inform.html", context)
 
 
-def place(request):
-
-    return render(request, "places/place.html")
+def allspots(request, cityname):
+    spots = Spot.objects.filter(city__name=cityname)
+    context = {
+        "spots": spots,
+        "cityname": cityname,
+    }
+    return render(request, "places/allspots.html", context)
 
 
 def city(request, cityname):
@@ -96,6 +100,8 @@ def city(request, cityname):
             else:
                 star = "별점 없음"
         spots.append((Spot.objects.get(pk=grade["spot"]), star))
+        if len(spots) == 3:
+            break
 
     context = {
         "city": city,
@@ -196,4 +202,10 @@ def spotcomment(request, cityname, pk):
         comment.spot = spot
         comment.user = request.user
         comment.save()
+    return redirect("places:spot", cityname, pk)
+
+
+@login_required
+def comment_delete(request, cityname, pk, comment_pk):
+    Spotcomment.objects.get(pk=comment_pk).delete()
     return redirect("places:spot", cityname, pk)
