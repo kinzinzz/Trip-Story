@@ -3,161 +3,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% block css %}{% endblock css %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Oswald:wght@500&family=Permanent+Marker&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <title>Trip Story</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}{% endblock css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Oswald:wght@500&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Trip Story</title>
+  </head>
 
-<body class="bg-light">
-  <nav class="navbar navbar-expand-lg p-0 navbar-small">
+  <body class="bg-light">
 
-    <div class="container-fluid w-100 container">
-      <a class="navbar-brand mx-5" href="{% url 'articles:index' %}">
-        <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-<<<<<<< HEAD
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-5 mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link nav-font" href="{% url 'places:inform' %}">여행 정보</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link nav-font" href="{% url 'reviews:index' %}">여행 리뷰</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link nav-font" href="{% url 'reviews:index' %}">커뮤니티</a>
-            </li>
-          </ul>
-          {% if user.is_authenticated %}
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'accounts:profile' user.nickname %}">
-                {{ request.user.nickname }}님의 프로필
-              </a>
-            </li>
-            <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
-          </ul>
-          <!-- guest -->
-          {% else %}
-          <ul class="navbar-nav">
-            <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
-            <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
-          </ul>
-          {% endif %}
+    <nav class="navbar-large navbar navbar-expand-lg container-fluid justify-content-center">
+      <div class="nav-width d-flex justify-content-center">
+        <div class="front_nav_item d-flex">
+          <a class="navbar-brand d-flex align-items-center pe-5" href="{% url 'articles:index' %}">
+            <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav d-flex align-items-center nav-center">
+              <li class="hvr_1 nav-item nav-item-center">
+                <a class="nav-link fw-bold rounded-pill" href="{% url 'places:inform' %}" style="font-size: 1.5rem;">여행 정보</a>
+                <div class="navbar-small-hover hvr_1_list hvr_hide">
+                  <ul class="navbar-hover-list">
+                    <li class="navbar-hover-list-item">
+                      <a href="{% url 'places:inform' %}">지역별로 보기</a>
+                    </li>
+                    <li class="navbar-hover-list-item">
+                      <a href="{% url 'places:inform' %}">인기순으로 보기</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="hvr_2 nav-item nav-item-center">
+                <a class="nav-link fw-bold rounded-pill" href="{% url 'reviews:index' %}" style="font-size: 1.5rem;">여행 리뷰</a>
+                <div class="navbar-small-hover hvr_2_list hvr_hide">
+                  <ul class="navbar-hover-list">
+                    <li class="navbar-hover-list-item">리뷰 작성</li>
+                    <li class="navbar-hover-list-item">리뷰 수정</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="hvr_3 nav-item nav-item-center">
+                <a class="nav-link fw-bold rounded-pill" href="#" style="font-size: 1.5rem;">커뮤니티</a>
+              </li>
+            </ul>
+            {% if user.is_authenticated %}
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'accounts:profile' user.nickname %}">
+                    {{ request.user.nickname }}님의 프로필
+                  </a>
+                </li>
+                <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+              </ul>
+              <!-- guest -->
+            {% else %}
+              <ul class="navbar-nav">
+                <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
+                <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
+              </ul>
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <nav
-      class="navbar-large navbar navbar-expand-lg container-fluid justify-content-center"
-    >
-    <div class="nav-width d-flex justify-content-center">
-      <div class="front_nav_item d-flex">
-        <a class="navbar-brand d-flex align-items-center pe-5" href="{% url 'articles:index' %}">
-          <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav d-flex align-items-center nav-center">
-            <li class="hvr_1 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="{% url 'places:inform' %}"
-                style="font-size: 1.5rem;"
-                >여행 정보</a
-              >
-              <div class="navbar-small-hover hvr_1_list hvr_hide">
-                <ul class="navbar-hover-list">
-                  <li class="navbar-hover-list-item"><a href="{% url 'places:inform' %}">지역별로 보기</a></li>
-                  <li class="navbar-hover-list-item"><a href="{% url 'places:inform' %}">인기순으로 보기</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="hvr_2 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="{% url 'reviews:index' %}"
-                style="font-size: 1.5rem;"
-                >여행 리뷰</a
-              >
-              <div class="navbar-small-hover hvr_2_list hvr_hide">
-                <ul class="navbar-hover-list">
-                  <li class="navbar-hover-list-item">리뷰 작성</li>
-                  <li class="navbar-hover-list-item">리뷰 수정</li>
-                </ul>
-              </div>
-            </li>
-            <li class="hvr_3 nav-item nav-item-center">
-              <a
-                class="nav-link fw-bold rounded-pill"
-                href="#"
-                style="font-size: 1.5rem;"
-                >커뮤니티</a
-              >
-            </li>
-          </ul>
-          {% if user.is_authenticated %}
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'accounts:profile' user.nickname %}">
-                {{ request.user.nickname }}님의 프로필
-              </a>
-            </li>
-            <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
-          </ul>
-          <!-- guest -->
-          {% else %}
-          <ul class="navbar-nav">
-            <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
-            <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
-          </ul>
-          {% endif %}
+    {% block content %}{% endblock %}
+    {% bootstrap_javascript %}
+    <footer class="text-center">
+      <div class="position-sticky bottom-0 w-100 d-flex justify-content-center bg-dark mt-5" style="color:white;">
+        <div class="py-2">
+
+          <p class="m-0">
+            Copyright ⓒ 2022 Trip_Story.com, All Rights Reserved.
+            <br>
+            Made with 김광표 & 김준환 & 서민수 & 이동영
+          </p>
         </div>
       </div>
-    </div>
-  </nav>
+    </footer>
 
-  {% block content %}{% endblock %}
-  {% bootstrap_javascript %}
-  <footer class="text-center">
-    <div class="position-sticky bottom-0 w-100 d-flex justify-content-center bg-dark mt-5" style="color:white;">
-      <div class="py-2">
-
-        <p class="m-0">
-          Copyright ⓒ 2022 Trip_Story.com, All Rights Reserved.
-          <br>
-          Made with 김광표 & 김준환 & 서민수 & 이동영
-        </p>
-      </div>
-    </div>
-  </footer>
-
-</body>
+  </body>
 
 </html>

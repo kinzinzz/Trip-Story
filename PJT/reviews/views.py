@@ -7,22 +7,19 @@ from .models import Review
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # 리뷰 인덱스
 def index(request):
     # 페이징 처리
-    page_all = Review.objects.all()
-    paginator = Paginator(page_all, 6)
-    page = request.GET.get("page")
-    page_list = paginator.get_page(page)
+    # like 많은순으로 정렬하고 0~2등 가져오기
     reviews = (
         models.Review.objects.all()
         .annotate(like_count=Count("like"))
         .order_by("-like_count")[0:6]
     )
-    return render(
-        request, "reviews/index.html", {"reviews": reviews, "page_list": page_list}
-    )
+
+    return render(request, "reviews/index.html", {"reviews": reviews})
 
 
 # 리뷰 생성
