@@ -9,19 +9,23 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
-
+from places.models import City
 
 # 리뷰 인덱스
 def index(request):
     # 페이징 처리
     # like 많은순으로 정렬하고 0~2등 가져오기
+    citys = City.objects.all()
     reviews = (
         models.Review.objects.all()
         .annotate(like_count=Count("like"))
         .order_by("-like_count")[0:6]
     )
-
-    return render(request, "reviews/index.html", {"reviews": reviews})
+    context = {
+        "reviews": reviews,
+        "citys": citys,
+    }
+    return render(request, "reviews/index.html", context)
 
 
 # 리뷰 생성
