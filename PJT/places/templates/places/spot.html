@@ -15,12 +15,12 @@
 </div>
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
-        <div class="carousel-indicators">
+        {% comment %} <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                 aria-label="Slide 2"></button>
-        </div>
+        </div> {% endcomment %}
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ spot.image.url }}" class="d-block w-100" alt="...">
@@ -34,16 +34,18 @@
     <h1 class="mt-5">{{ spot.title }}</h1>
     <br>
     <hr>
-    <ul>
-        <li>도시 : {{ spot.city.name }}</li>
-        <li>테마 : {{ spot.themes }}</li>
-        <li>작성자 : {{ spot.user.nickname }}</li>
+    <ul class="place-inform-lst d-flex justify-content-evenly">
         <li>
-            <span>평점 ·
-                <span class="text-warning fw-bold">{{ star }}</span>
-                <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
+            <span><span class="fw-bold">평점 ·</span>
+                <span>
+                    <span class="text-warning fw-bold">{{ star }}</span>
+                    <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
+                </span>
             </span>
         </li>
+        <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
+        <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
+        <li><span class="fw-bold">작성자 : </span><span>{{ spot.user.nickname }}</span></li>
     </ul>
     <hr>
     <p>{{ spot.content }}</p>
