@@ -5,26 +5,37 @@ from django.http import JsonResponse
 from django.db.models import Count
 from .models import Review
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.contrib import messages
 from django.core.paginator import Paginator
+
+from django.contrib import messages
+
 from django.db.models import Q
 from places.models import City
 
+
 # 리뷰 인덱스
 def index(request):
-    # 페이징 처리
     # like 많은순으로 정렬하고 0~2등 가져오기
     citys = City.objects.all()
-    reviews = (
-        models.Review.objects.all()
-        .annotate(like_count=Count("like"))
-        .order_by("-like_count")[0:6]
-    )
+    page = request.GET.get('page','1')
+    page_li = Review.objects.all()
+    pag = page_li.annotate(like_count=Count("like"))
+    page_ = pag.order_by("-like_count")
+    paginator = Paginator(page_, 6)
+    page_obj = paginator.get_page(page)
+    
+    # like 많은순으로 정렬하고 0~2등 가져오기
+     # reviews = (
+    #     models.Review.objects.all()
+    #     .annotate(like_count=Count("like"))
+    #     .order_by("-like_count")[0:6]
+    # )
+    
     context = {
-        "reviews": reviews,
+        'pageboard': page_obj,
         "citys": citys,
     }
+    
     return render(request, "reviews/index.html", context)
 
 
