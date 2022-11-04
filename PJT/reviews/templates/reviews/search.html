@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<div class="container">
+    <h1>{{ query }}의 리뷰</h1>
+
+    {% for review in reviews %}
+    <div class="">
+        <ul>
+            <li>{{ review.title }}</li>
+            <li><img src="{{ review.image.url }}" alt=""></li>
+        </ul>
+    </div>
+    <a href="{% url 'reviews:like' review.pk %}">좋아요</a> <span>{{ review.like.all | length }}</span>
+    {% endfor %}
+</div>
+
+{% endblock %}
