@@ -62,3 +62,11 @@ class Review(models.Model):
 
     # 리뷰 작성자
     user = models.ForeignKey(User, related_name="review_user", on_delete=models.CASCADE)
+
+    # 리뷰 조회수
+    hits = models.PositiveIntegerField(default=0)
+
+    @property
+    def update_hits(self):
+        self.hits = self.hits + 1
+        self.save()
