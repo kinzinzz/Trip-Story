@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb mt-3">
             <li class="breadcrumb-item"><a href="{% url 'places:inform' %}">여행지</a></li>
             <li class="breadcrumb-item"><a href="{% url 'places:city' spot.city.name %}">{{ spot.city.name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ spot.title }}</li>
@@ -15,12 +15,12 @@
 </div>
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
-        <div class="carousel-indicators">
+        {% comment %} <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                 aria-label="Slide 2"></button>
-        </div>
+        </div> {% endcomment %}
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ spot.image.url }}" class="d-block w-100" alt="...">
@@ -34,21 +34,29 @@
     <h1 class="mt-5">{{ spot.title }}</h1>
     <br>
     <hr>
-    <ul>
-        <li>도시 : {{ spot.city.name }}</li>
-        <li>테마 : {{ spot.themes }}</li>
-        <li>작성자 : {{ spot.user.nickname }}</li>
+    <ul class="place-inform-lst d-flex justify-content-evenly">
         <li>
-            <span>평점 ·
-                <span class="text-warning fw-bold">{{ star }}</span>
-                <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
+            <span><span class="fw-bold">평점 ·</span>
+                <span>
+                    <span class="text-warning fw-bold">{{ star }}</span>
+                    <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
+                </span>
             </span>
         </li>
+        <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
+        <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
+        <li><span class="fw-bold">작성자 : </span><span>{{ spot.user.nickname }}</span></li>
     </ul>
     <hr>
     <p>{{ spot.content }}</p>
     <br>
-
+    {% if user == spot.user %}
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-sm btn-outline-secondary mx-2"
+            href="{% url 'places:updatespot' spot.city.name spot.pk %}">수정</a>
+        <a class="btn btn-sm btn-outline-danger mx-2" href="{% url 'places:deletespot' spot.city.name spot.pk %}">삭제</a>
+    </div>
+    {% endif %}
     <div class="container p-5">
         <i class="bi-chat-text p-2">댓글과 별점을 남겨보세요</i>
         <form action="{% url 'places:spotcomment' spot.city.name spot.pk %}" method="POST">
@@ -69,7 +77,10 @@
             {% for comment in comments %}
             <li class="list-group-item align-middle">
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-text text-muted m-2">{{ comment.user.nickname }}</p>
+                    <a class="text-black text-decoration-none"
+                        href="{% url 'accounts:profile' comment.user.nickname %}">
+                        <p class="card-text text-muted m-2">{{ comment.user.nickname }}</p>
+                    </a>
                     <p class="card-text text-muted pt-3">{{ comment.created_at }}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center m-2">
@@ -92,7 +103,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     {% if request.user == comment.user %}
-                    <form action="" method="POST">
+                    <form action="{% url 'places:comment_delete' spot.city.name spot.pk comment.pk %}" method="POST">
                         {% csrf_token %}
                         <input class="text-danger bg-white ms-3 border-1 border-danger text-decoration-none rounded-2"
                             type="submit" value="삭제">

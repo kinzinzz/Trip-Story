@@ -24,6 +24,7 @@ a{
   text-decoration: none;
   color:rgb(71, 71, 71);
 }
+
 .card-text {
   overflow: hidden;
   white-space: normal;
@@ -73,11 +74,11 @@ a{
 }
 
 .hvr_1_list{
-  padding-left: 35vw;
+  padding-left: 35%;
 }
 
 .hvr_2_list{
-  padding-left: 44vw;
+  padding-left: 35%;
 }
 
 .hvr_hide {
@@ -103,17 +104,16 @@ a{
   height: 20vh;
 }
 
-
-
 .main-title {
   font-family: 'Permanent Marker', cursive;
-  font-size :6rem;
+  font-size :7rem;
   font-weight: 500;
   text-align: center;
   color:rgb(255, 255, 255);
 }
 
 .main-title-sub {
+  margin-top:3rem;
   font-family: 'Oswald', sans-serif;
   font-size :2rem;
   font-weight: 550;
@@ -135,9 +135,23 @@ a{
   margin-bottom: 3rem;
 }
 
-.index-card {
+.card-img-top{
   width:100;
-  margin-top: 0.7rem;
+  margin-top: 0;
+}
+/* 
+.index-card {
+  
+} */
+
+.inform-card:hover{
+  transform: scale(1.07);
+  transition-duration: 1s;
+}
+
+.index-card:hover{
+  transform: scale(1.07);
+  transition-duration: 1s;
 }
 
 .carousel-font {
@@ -155,4 +169,8 @@ a{
 
 .choice-place{
   height:5rem;
+}
+
+.place-inform-lst{
+  list-style: none;
 }

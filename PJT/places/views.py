@@ -55,9 +55,13 @@ def inform(request):
     return render(request, "places/inform.html", context)
 
 
-def place(request):
-
-    return render(request, "places/place.html")
+def allspots(request, cityname):
+    spots = Spot.objects.filter(city__name=cityname)
+    context = {
+        "spots": spots,
+        "cityname": cityname,
+    }
+    return render(request, "places/allspots.html", context)
 
 
 def city(request, cityname):
@@ -69,6 +73,18 @@ def city(request, cityname):
         .order_by("-avg")
         .filter(spot__city=city)
     )
+    visiters = (
+        Spotcomment.objects.select_related("spot")
+        .values("spot")
+        .annotate(cnt=Count("id"))
+        .order_by("-cnt")
+        .filter(spot__city=city)
+    )
+    visitspots = []
+    for visiter in visiters:
+        visitspots.append((Spot.objects.get(pk=visiter["spot"]), visiter["cnt"]))
+        if len(visitspots) == 3:
+            break
     spots = []
     for grade in grades:
         star = ""
@@ -96,10 +112,13 @@ def city(request, cityname):
             else:
                 star = "별점 없음"
         spots.append((Spot.objects.get(pk=grade["spot"]), star))
+        if len(spots) == 3:
+            break
 
     context = {
         "city": city,
         "spots": spots,
+        "visitspots": visitspots,
     }
 
     return render(request, "places/city.html", context)
@@ -188,6 +207,28 @@ def createspot(request, cityname):
 
 
 @login_required
+def deletespot(request, cityname, pk):
+    Spot.objects.get(pk=pk).delete()
+    return redirect("places:city", cityname)
+
+
+@login_required
+def updatespot(request, cityname, pk):
+    spot = Spot.objects.get(pk=pk)
+    if request.method == "POST":
+        spot_form = SpotForm(request.POST, request.FILES, instance=spot)
+        if spot_form.is_valid():
+            spot_form.save()
+            return redirect("places:spot", cityname, pk)
+    else:
+        spot_form = SpotForm(instance=spot)
+    context = {
+        "spot_form": spot_form,
+    }
+    return render(request, "places/createspot.html", context)
+
+
+@login_required
 def spotcomment(request, cityname, pk):
     spot = Spot.objects.get(pk=pk)
     comment_form = CommentForm(request.POST)
@@ -196,4 +237,10 @@ def spotcomment(request, cityname, pk):
         comment.spot = spot
         comment.user = request.user
         comment.save()
+    return redirect("places:spot", cityname, pk)
+
+
+@login_required
+def comment_delete(request, cityname, pk, comment_pk):
+    Spotcomment.objects.get(pk=comment_pk).delete()
     return redirect("places:spot", cityname, pk)
