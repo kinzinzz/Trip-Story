@@ -194,6 +194,28 @@ def createspot(request, cityname):
 
 
 @login_required
+def deletespot(request, cityname, pk):
+    Spot.objects.get(pk=pk).delete()
+    return redirect("places:city", cityname)
+
+
+@login_required
+def updatespot(request, cityname, pk):
+    spot = Spot.objects.get(pk=pk)
+    if request.method == "POST":
+        spot_form = SpotForm(request.POST, request.FILES, instance=spot)
+        if spot_form.is_valid():
+            spot_form.save()
+            return redirect("places:spot", cityname, pk)
+    else:
+        spot_form = SpotForm(instance=spot)
+    context = {
+        "spot_form": spot_form,
+    }
+    return render(request, "places/createspot.html", context)
+
+
+@login_required
 def spotcomment(request, cityname, pk):
     spot = Spot.objects.get(pk=pk)
     comment_form = CommentForm(request.POST)
