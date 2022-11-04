@@ -1,41 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% load django_bootstrap5 %}
-{{ review.update_hits }}
-<!-- 리뷰내용 임시로 제목과 타이틀만 출력-->
-<div class="review_container">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0"/>
+  {% load django_bootstrap5 %}
 
-    <h1>리뷰제목:{{review.title}}</h1>
-    <h1>리뷰부제:{{review.subtitle}}</h1>
-    <!-- 리뷰 이미지 없을때 에러처리 -->
-    {% if review.image %}
-    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt=""></a>
-    {% endif %}
-    <ul>
-        <li>
-            리뷰도시:{{ review.city }}
-        </li>
-        <li>
-            좋아요: {{ review.like.all | length }}
-        </li>
-        <li>
-            리뷰내용: {{ review.content }}
-        </li>
-        <li>
-            작성시간:{{ review.created_at }}
-        </li>
-        <li>
-            여행기간: {{ review.start_day }} ~ {{ review.end_day }}
-        </li>
-        <li>
-            리뷰작성자 : {{ review.user}}
-        </li>
-        <!-- 좋아요 동기적 구현 -->
-        <a href="{% url 'reviews:like' review.pk %}">좋아요</a> <span>{{ review.like.all | length }}</span>
-
-        <a href="{% url 'reviews:update' review.pk %}">리뷰수정</a>
-        <a href="{% url 'reviews:delete' review.pk %}">리뷰삭제</a>
-</div>
-
+  <div class=" mx-5 my-3">
+    <div class="container">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb" style="margin-left: 145px; font-size: 14px;">
+          <li class="breadcrumb-item">
+            <a href="{% url 'reviews:index' %}">여행지</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <div style="height: 450px; border: 1px solid rgba(49, 49, 49, 0.36);">
+      <img style=" width: 1000px; height: 350px;" src="{{ review.image.url }}" alt="">
+      <div class="mx-4 my-3">
+        <div style=" font-weight: bold; margin-top: -130px; font-size: 30px; color: white;" class="cover-title">{{ review.title }}
+          ({{ review.start_day|timesince:review.end_day }})
+         </div>
+        <div style="  font-size: 12px; color: white;">
+          {{ review.start_day}}
+          ~
+          {{ review.end_day }}
+          <span class="mx-2" style="background-color: rgb(98, 98, 98); border-radius: 3px; font-size: 13px; font-weight: lighter;">{{ review.subtitle }}</span>
+        </div>
+        <div style="height: 30px; border: 1px solid rgba(255, 255 , 255);">
+          <a href="{% url 'reviews:like' review.pk %}">
+            <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
+          </a>
+          <span style="color: white; position: absolute; font-size: 18px; margin-left: 02px; margin-top:0px;">{{ review.like.all | length  }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
