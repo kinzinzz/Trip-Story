@@ -7,7 +7,7 @@
 
 <div class="container text-center">
   <h1 class="py-4">{{ cityname }}의 관광 명소들</h1>
-  <div class="d-flex justify-content-evenly row row-cols-12">
+  <div class='d-flex justify-content-evenly row row-cols-12 best3'>
     {% for spot in spots %}
     <div class="card col-4 shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
       <img src="{{ spot.thumbnail.url }}" class="card-img-top index-card" alt="...">
