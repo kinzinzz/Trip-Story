@@ -115,17 +115,24 @@ def like(request, review_pk):
 
 
 # 리뷰 도시별 조회
-def search(request, kw):
+def search_reviews(request, city_name):
 
-    if "kw" in request.GET:
-        query = request.GET.get("kw")
-        reviews = (
-            models.Review.objects.all()
-            .filter(Q(city__icontains=query))
-            .order_by("-created_at")
-        )
+    query = city_name
+    reviews = (
+        models.Review.objects.all()
+        .filter(Q(city__icontains=query))
+        .order_by("-created_at")
+    )
 
-    return render(request, "reviews/search.html", {"reviews": reviews})
+    return render(
+        request,
+        "reviews/search.html",
+        {
+            "reviews": reviews,
+            "query": query,
+        },
+    )
+
 
 
 # 좋아요 기능 비동기

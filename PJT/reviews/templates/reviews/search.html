@@ -10,7 +10,9 @@
     <div class="">
         <ul>
             <li>{{ review.title }}</li>
+            {% if review.image %}
             <li><img src="{{ review.image.url }}" alt=""></li>
+            {% endif %}
         </ul>
     </div>
     <a href="{% url 'reviews:like' review.pk %}">좋아요</a> <span>{{ review.like.all | length }}</span>
