@@ -73,7 +73,19 @@
             {% for comment in comments %}
             <li class="list-group-item align-middle rounded-4 my-1 border shadow comment-card">
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-text text-muted m-2">{{ comment.user.nickname }}</p>
+                    <a class="text-black text-decoration-none"
+                        href="{% url 'accounts:profile' comment.user.nickname %}">
+                        <div class="card-text text-muted m-2 d-flex align-bottom">
+                            {% if comment.user.profile_image %}
+                            <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                                src="{{ user.profile_image.url }}" alt="">
+                            {% elif %}
+                            <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                                src="{{ static 'image/logo.png' }}" alt="">
+                            {% endif %}
+                            <p class="pt-1 ps-1">{{ comment.user.nickname }}</p>
+                        </div>
+                    </a>
                     <p class="card-text text-muted pt-3">{{ comment.created_at }}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center m-2">
