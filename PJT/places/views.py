@@ -73,6 +73,18 @@ def city(request, cityname):
         .order_by("-avg")
         .filter(spot__city=city)
     )
+    visiters = (
+        Spotcomment.objects.select_related("spot")
+        .values("spot")
+        .annotate(cnt=Count("id"))
+        .order_by("-cnt")
+        .filter(spot__city=city)
+    )
+    visitspots = []
+    for visiter in visiters:
+        visitspots.append((Spot.objects.get(pk=visiter["spot"]), visiter["cnt"]))
+        if len(visitspots) == 3:
+            break
     spots = []
     for grade in grades:
         star = ""
@@ -106,6 +118,7 @@ def city(request, cityname):
     context = {
         "city": city,
         "spots": spots,
+        "visitspots": visitspots,
     }
 
     return render(request, "places/city.html", context)

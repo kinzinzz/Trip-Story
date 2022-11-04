@@ -34,14 +34,14 @@
                         </h5>
                     </li>
 
-                    <li class="list-group-item py-md-4 py-2 d-flex justify-content-center">
+                    <li class="list-group-item py-md-4 py-2 d-flex justify-content-end">
                         {% if request.user != person %}
                         <form action="{% url 'accounts:follow' person.pk %}" method="POST">
                             {% csrf_token %}
                             {% if request.user in person.followers.all %}
-                            <input class="btn btn-primary ms-2" type="submit" value="Unfollow">
+                            <input class="btn btn-outline-danger ms-2" type="submit" value="Unfollow">
                             {% else %}
-                            <input class="btn btn-danger ms-2" type="submit" value="Follow">
+                            <input class="btn btn-outline-success ms-2" type="submit" value="Follow">
                             {% endif %}
                         </form>
                         {% else %}
@@ -57,7 +57,7 @@
                 {% if request.user == person %}
                 <h5>내 리뷰 보러가기</h5>
                 {% else %}
-                <h5>{{ user.nickname }}님의 리뷰 보러가기</h5>
+                <h5>{{ person.nickname }}님의 리뷰 보러가기</h5>
                 {% endif %}
             </a>
 
