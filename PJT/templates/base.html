@@ -66,7 +66,7 @@
     <div class="nav-width d-flex justify-content-center">
       <div class="front_nav_item d-flex">
         <a class="navbar-brand d-flex align-items-center pe-5" href="{% url 'articles:index' %}">
-          <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
+          <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="60">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,24 +78,38 @@
               <a class="nav-link fw-bold rounded-pill" href="{% url 'places:inform' %}" style="font-size: 1.5rem;">여행
                 정보</a>
               <div class="navbar-small-hover hvr_1_list hvr_hide">
-                <ul class="navbar-hover-list">
-                  <li class="navbar-hover-list-item">
-                    <a href="{% url 'places:inform' %}">지역별로 보기</a>
-                  </li>
-                  <li class="navbar-hover-list-item">
-                    <a href="{% url 'places:inform' %}">인기순으로 보기</a>
-                  </li>
-                </ul>
+                <div class="navbar-hover-list">
+                  {% comment %} <div class="nav-empty-box col-3"></div> {% endcomment %}
+                  <ul style="list-style:none;">
+                    <li class="navbar-hover-list-item">
+                      <a href="{% url 'places:inform' %}">지역별로 보기</a>
+                    </li>
+                    <li class="navbar-hover-list-item">
+                      <a href="{% url 'places:inform' %}">인기순으로 보기</a>
+                    </li>
+                  </ul>
+                  {% comment %} <div class="nav-empty-box col-7"></div> {% endcomment %}
+                </div>
               </div>
             </li>
             <li class="hvr_2 nav-item nav-item-center">
               <a class="nav-link fw-bold rounded-pill" href="{% url 'reviews:index' %}" style="font-size: 1.5rem;">여행
                 리뷰</a>
-              <div class="navbar-small-hover hvr_2_list hvr_hide">
-                <ul class="navbar-hover-list">
-                  <li class="navbar-hover-list-item">리뷰 작성</li>
-                  <li class="navbar-hover-list-item">리뷰 수정</li>
-                </ul>
+              <div class="container">
+                <div class="navbar-small-hover hvr_2_list hvr_hide">
+                  <div class="navbar-hover-list">
+                    {% comment %} <div class="nav-empty-box col-5"></div> {% endcomment %}
+                    <ul style="list-style:none; ms-3">
+                      <li class="navbar-hover-list-item">
+                        <a href="{% url 'reviews:index' %}">리뷰 보기</a>
+                      </li>
+                      <li class="navbar-hover-list-item">
+                        <a href="{% url 'reviews:create' %}">리뷰 작성</a>
+                      </li>
+                    </ul>
+                    {% comment %} <div class="nav-empty-box col-5"></div> {% endcomment %}
+                  </div>
+                </div>
               </div>
             </li>
             <li class="hvr_3 nav-item nav-item-center">
@@ -126,9 +140,9 @@
   {% block content %}{% endblock %}
   {% bootstrap_javascript %}
   <footer class="text-center">
-    <div class="position-sticky bottom-0 w-100 d-flex justify-content-center bg-dark mt-5" style="color:white;">
+    <div class="position-sticky bottom-0 w-100 d-flex justify-content-center bg-dark mt-5 py-5" style="color:white;">
       <div class="py-2">
-        <p class="m-0">
+        <p class="m-0 fw-0">
           Copyright ⓒ 2022 Trip_Story.com, All Rights Reserved.
           <br>
           Made with 김광표 & 김준환 & 서민수 & 이동영
