@@ -78,10 +78,10 @@
                         <div class="card-text text-muted m-2 d-flex align-bottom">
                             {% if comment.user.profile_image %}
                             <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
-                                src="{{ user.profile_image.url }}" alt="">
-                            {% elif %}
+                                src="{{ comment.user.profile_image.url }}" alt="">
+                            {% else %}
                             <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
-                                src="{{ static 'image/logo.png' }}" alt="">
+                                src="{% static 'images/logo.png' %}" alt="">
                             {% endif %}
                             <p class="pt-1 ps-1">{{ comment.user.nickname }}</p>
                         </div>

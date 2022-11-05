@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/community_style.css' %}">
+
+<div class="container">
+    <div class="content">
+        <div class="container">
+            <h1 class="text-center fw-bold">커뮤니티</h1>
+            <p class="mb-5 text-center text-secondary fw-bold">질문, 여행, 자유주제 등 자유롭게 글을 올려보세요</p>
+            <div class="table-responsive border boder-1 rounded-1 p-2">
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col-1">글 번호</th>
+                            <th scope="col-1">작성자</th>
+                            <th scope="col-8">글 제목</th>
+                            <th scope="col-2">카테고리</th>
+                            <th scope="col-2">작성일</th>
+                        </tr>
+                    </thead>
+                    {% for com in coms %}
+                    <tbody>
+                        <tr scope="row">
+                            <td>
+                                {{ com.pk }}
+                            </td>
+                            <td>{{ com.user.nickname }}</td>
+                            <td>
+                                <a class="link-secondary" href="{% url 'articles:com_detail' com.pk %}">
+                                    {{ com.title|truncatechars:10 }}</a>
+
+                                <small class="d-block">{{ com.content|truncatechars:15 }}</small>
+                            </td>
+                            <td>{{ com.category }}</td>
+                            <td>{{ com.created_at|date:'Y-m-d' }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="py-3 d-flex justify-content-end">
+            <a class="btn btn-outline-secondary" href="{% url 'articles:com_create' %}">글쓰기</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

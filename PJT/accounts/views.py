@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from .models import User
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods, require_POST
+from django.core.paginator import Paginator
+from reviews.models import Review
+from django.db.models import Count
 
 # Create your views here.
 
@@ -89,3 +92,19 @@ def follow(request, user_pk):
                 person.followers.add(request.user)
         return redirect("accounts:profile", person.nickname)
     return redirect("accounts:login")
+
+
+def usereview(request, nickname):
+
+    page = request.GET.get("page", "1")
+    page_li = Review.objects.filter(user__nickname=nickname)
+    pag = page_li.annotate(like_count=Count("like"))
+    page_ = pag.order_by("-like_count")
+    paginator = Paginator(page_, 6)
+    page_obj = paginator.get_page(page)
+
+    context = {
+        "pageboard": page_obj,
+        "nickname": nickname,
+    }
+    return render(request, "accounts/usereview.html", context)
