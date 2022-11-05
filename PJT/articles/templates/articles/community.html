@@ -31,7 +31,7 @@
                             <td>{{ com.user.nickname }}</td>
                             <td>
                                 <a class="link-secondary" href="{% url 'articles:com_detail' com.pk %}">
-                                    {{ com.title|truncatechars:10 }}</a>
+                                    {{ com.title|truncatechars:15 }}</a>
 
                                 <small class="d-block">{{ com.content|truncatechars:15 }}</small>
                             </td>
