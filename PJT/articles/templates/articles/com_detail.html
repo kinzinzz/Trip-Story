@@ -15,7 +15,7 @@
                 <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
                     src="{% static 'images/logo.png' %}" alt="">
                 {% endif %}
-                {{ com.user }}
+                {{ com.user.nickname }}
             </a>
             {% if request.user == com.user %}
             <div>

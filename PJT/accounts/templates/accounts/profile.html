@@ -3,7 +3,7 @@
 {% load django_bootstrap5 %}
 
 <div class="container d-flex flex-column align-items-center py-5">
-    <div class="card my-5 border border-black shadow p-3 bg-body rounded">
+    <div class="my-5 border border-black shadow p-3 bg-body rounded">
         <div class="card-header border border-black text-black opacity-75">
             <h5 class="fs-3 fw-bold text-center my-1">
                 {{ person.nickname }}님의 프로필
@@ -13,10 +13,12 @@
             <div class="col-md-5 col-6 text-center">
                 {% if person.profile_image %}
                 <img class="w-100" src="{{ user.profile_image.url }}" alt="">
-                {% endif %}
+                {% else %}
                 <div class="align-middle py-5 my-5">
                     <h3 class="fw-bold">프로필 이미지가 없어요</h3>
                 </div>
+                {% endif %}
+
             </div>
             <div class="col py-4">
                 <ul class="list-group list-group-flush">

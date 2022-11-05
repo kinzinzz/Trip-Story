@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from places.models import Spot
+from reviews.models import Review
 from .models import Community, Comcomment
 from .forms import CommunityForm, ComcommentForm
 from django.contrib.auth.decorators import login_required
@@ -16,10 +17,13 @@ def search(request):
         searched = request.GET.get("search")
         if searched:
             spots = Spot.objects.filter(title__contains=searched)
-            print(spots)
+            reviews = Review.objects.filter(title__contains=searched)
+            for review in reviews:
+                print(review.title)
             context = {
                 "search": searched,
                 "spots": spots,
+                "reviews": reviews,
             }
         else:
             context = {

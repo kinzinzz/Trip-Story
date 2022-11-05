@@ -3,25 +3,17 @@
 {% load django_bootstrap5 %}
 
 
-
 {% block content %}
-<div class="" style="
-    background-image: url({% static 'images/index_background.png' %});
-    height : 320px;
-    display: flex;
-    flex-direction : column;
-    justify-content: center;
-    align-items: center;
-    ">
+<div class="d-flex justify-content-center align-items-center flex-column"
+    style="background-image: url({% static 'images/index_background.png' %}); height:320px;">
     <h1 class="main-title-sub">나만의 여행 이야기</h1>
     <h1 class="main-title pb-2">Trip Story</h1>
     <div class="container row d-flex justify-content-center">
         <div class="col-10 col-md-8">
-            <form class="d-flex row" role="search" method="GET" action="{% url 'articles:search' %}"
-                style="width:100%;">
+            <form class="d-flex row" role="search" method="GET" action="{% url 'articles:search' %}">
                 {% csrf_token %}
-                <input class="form-control col mx-1 search-block search" type="search" placeholder="지역, 여행일정을 검색해보세요" name="search"
-                    aria-label="Search">
+                <input class=" form-control col mx-1 search-block search" type="search" placeholder="지역, 여행일정을 검색해보세요"
+                    name="search" aria-label="Search">
                 <button class="btn btn-light col-2 col-xl-1 mx-1 search" type="submit">검색</button>
             </form>
         </div>
@@ -89,5 +81,4 @@
         </div>
     </div>
 </div>
-
 {% endblock content %}
