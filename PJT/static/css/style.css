@@ -4,34 +4,40 @@ font-family: 'Oswald', sans-serif;     _ 깔끔 두껍
 font-family: 'Permanent Marker', cursive;     _ 자유로운 느낌 , 두껍
 */
 @media (max-width: 1100px) {
+
   /*화면이 작을때 */
   .navbar-large {
     display: none;
   }
+
   .main-title-sub {
-    display:none;
+    display: none;
   }
+
   .search {
-    display:none;
+    display: none;
   }
 }
+
 @media (min-width: 1100px) {
+
   /*화면이 클때 */
   .navbar-small {
     display: none;
   }
+
   .main-title-sub {
     margin-top: 1.7rem;
   }
 }
 
-*{
+* {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
-  color:rgb(71, 71, 71);
+  color: rgb(71, 71, 71);
 }
 
 .card-text {
@@ -45,35 +51,36 @@ a{
 }
 
 .navbar {
-  padding:0.4rem 0 0.4rem 0;
-  background:linear-gradient(to top, rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.96),rgba(255, 255, 255, 0.992));
+  padding: 0.4rem 0 0.4rem 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.992));
   position: sticky;
-  top:0;
-  z-index:10;
+  top: 0;
+  z-index: 10;
 }
 
 .nav-font {
   font-size: 1.4rem;
   font-weight: 700;
-  margin:0 0.7rem 0 0.7rem;
+  margin: 0 0.7rem 0 0.7rem;
 }
 
-.nav-center{
+.nav-center {
   margin: 0 5rem 0 5rem;
 }
 
-.nav-item-center{
-  margin : 0 2rem 0 2rem;
+.nav-item-center {
+  margin: 0 2rem 0 2rem;
 }
 
 .navbar-hover-list {
-  padding:0;
-  width:100vw;
-  margin:1rem 0 1rem 45vw;
+  padding: 0;
+  width: 100vw;
+  margin: 1rem 0 1rem 45vw;
   list-style: none;
   font-weight: 700;
   z-index: 1;
 }
+
 .navbar-hover-list-item {
   padding-top: 0.8rem;
   font-size: 1.2rem;
@@ -92,10 +99,10 @@ a{
 } */
 
 .hvr_hide {
-  z-index:-1;
-  background:rgba(255, 255, 255, 0.86);
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.86);
   position: fixed;
-  top:2rem;
+  top: 2rem;
   left: 0;
   /* display:none; */
   visibility: hidden;
@@ -106,10 +113,12 @@ a{
   /* background-color: white; */
   transition: all 0.07s;
 }
+
 .hvr_1:hover .hvr_1_list {
   visibility: visible;
   height: 8rem;
 }
+
 .hvr_2:hover .hvr_2_list {
   visibility: visible;
   height: 8rem;
@@ -117,42 +126,51 @@ a{
 
 .main-title {
   font-family: 'Permanent Marker', cursive;
-  font-size :7rem;
+  font-size: 7rem;
   font-weight: 500;
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 
 .main-title-sub {
   font-family: 'Oswald', sans-serif;
-  font-size :2rem;
+  font-size: 2rem;
   font-weight: 550;
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 
-.search-block{
+.search-block {
   background-color: rgba(255, 255, 255, 0.504);
 }
 
 .content-title {
   font-family: 'Oswald', sans-serif;
   margin: 5rem 0 1rem 0;
-  font-size :2rem;
+  font-size: 2rem;
   font-weight: 600;
   text-align: center;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
-.content-sub-title{
-  color:gray;
+.content-sub-title {
+  color: gray;
   margin-bottom: 3rem;
 }
 
-.card-img-top{
-  width:100;
+.card-img-top {
+  width: 100;
   margin-top: 0;
 }
+
 /* 
 .index-card {
   
@@ -162,27 +180,27 @@ a{
   transform: scale(1.07);
   transition-duration: 1s;
 } */
-.card{
-  padding :0;
-  margin-bottom:3rem;
+.card {
+  padding: 0;
+  margin-bottom: 3rem;
 }
 
-.comment-card:hover{
+.comment-card:hover {
   transform: scale(1.01);
   transition-duration: 1ms;
 }
 
-.card:hover{
+.card:hover {
   z-index: 9;
   transform: scale(1.07);
   transition-duration: 1s;
 }
 
-.carousel-inner > .carousel-item > img {
+.carousel-inner>.carousel-item>img {
   top: 0;
   left: 0;
-  height:40rem;
-} 
+  height: 40rem;
+}
 
 .carousel-font {
   text-shadow: -2px 1 #000, 1 2px #000, 2px 1 #000, 1 -2px #000;
@@ -190,24 +208,25 @@ a{
 }
 
 .carousel-title {
-  margin:0 0 1rem 2rem;
+  margin: 0 0 1rem 2rem;
   font-size: 3rem;
 }
 
-.spot-font-bg{
-  left:0;
-  right:0;
-  bottom:0;
-  background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.702),rgba(0, 0, 0, 0.859));
+.spot-font-bg {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.702), rgba(0, 0, 0, 0.859));
 }
+
 .best3 {
   overflow: hidden;
 }
 
-.choice-place{
-  height:5rem;
+.choice-place {
+  height: 5rem;
 }
 
-.place-inform-lst{
+.place-inform-lst {
   list-style: none;
 }
