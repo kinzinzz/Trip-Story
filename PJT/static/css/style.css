@@ -126,11 +126,20 @@ a {
 .hvr_1:hover .hvr_1_list {
   visibility: visible;
   height: 8rem;
+  transition: all 0.07s;
 }
+
 
 .hvr_2:hover .hvr_2_list {
   visibility: visible;
   height: 8rem;
+  transition: all 0.07s;
+}
+
+.hvr_3:hover .hvr_3_list {
+  visibility: visible;
+  height: 8rem;
+  transition: all 0.07s;
 }
 
 .main-title {
@@ -229,7 +238,8 @@ a {
 }
 
 .choice-place {
-  height: 5rem;
+  height: 3rem;
+  width: 100%;
 }
 
 .place-inform-lst {
