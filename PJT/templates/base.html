@@ -20,16 +20,16 @@
 </head>
 
 <body class="bg-light">
-  <nav class="navbar navbar-expand-lg p-0 navbar-small">
+  <nav class="navbar navbar-expand-xl p-0 navbar-small">
     <div class="container-fluid w-100 container">
-      <a class="navbar-brand mx-5" href="{% url 'articles:index' %}">
+      <a class="navbar-brand mx-5 p-0" href="{% url 'articles:index' %}">
         <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="80">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="small-collapse collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-5 mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link nav-font" href="{% url 'places:inform' %}">여행 정보</a>
@@ -40,23 +40,19 @@
           <li class="nav-item">
             <a class="nav-link nav-font" href="{% url 'articles:community' %}">커뮤니티</a>
           </li>
-        </ul>
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:profile' user.nickname %}">
+            <a class="nav-link ms-2" href="{% url 'accounts:profile' user.nickname %}">
               {{ request.user.nickname }}님의 프로필
             </a>
           </li>
-          <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+          <a class="nav-link ms-2" href="{% url 'accounts:logout' %}">로그아웃</a>
+          <!-- guest -->
+          {% else %}
+          <a class="nav-link ms-2" href="{% url 'accounts:login' %}">로그인</a>
+          <a class="nav-link ms-2" href="{% url 'accounts:signup' %}">회원가입</a>
+          {% endif %}
         </ul>
-        <!-- guest -->
-        {% else %}
-        <ul class="navbar-nav">
-          <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
-          <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
-        </ul>
-        {% endif %}
       </div>
     </div>
     </div>
@@ -68,10 +64,10 @@
         <a class="navbar-brand d-flex align-items-center pe-5" href="{% url 'articles:index' %}">
           <img class="" src="{% static 'images/logo.png' %}" alt="logo" height="60">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> {% endcomment %}
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav d-flex align-items-center nav-center">
             <li class="hvr_1 nav-item nav-item-center">
