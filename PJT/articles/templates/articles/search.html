@@ -7,7 +7,7 @@
     {% if spots %}
     <h2 class="content-title text-center mb-3">"{{ search }}"에 대한 장소 검색결과</h2>
     <p class="content-sub-title text-center">찾으시는 장소가 맞나요?</p>
-    <div class='d-flex justify-content-evenly row row-cols-12 best3'>
+    <div class='d-flex justify-content-evenly row row-cols-12 p-3'>
         {% for spot in spots %}
         <div class="card col-4 shadow mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ spot.thumbnail.url }}" class="card-img-top index-card" alt="...">
@@ -27,7 +27,7 @@
     {% if reviews %}
     <h2 class="content-title text-center mb-3">"{{ search }}"에 대한 리뷰 검색결과</h2>
     <p class="content-sub-title text-center">찾으시는 리뷰가 맞나요?</p>
-    <div class='d-flex justify-content-evenly row row-cols-12 best3'>
+    <div class='d-flex justify-content-evenly row row-cols-12 best3 p-3'>
         {% for review in reviews %}
         <div class="card col-4 shadow mb-5 bg-body rounded" style="width: 18rem;">
             <img src="{{ review.image.url }}" class="card-img-top index-card w-auto" alt="..."

@@ -15,12 +15,6 @@
 </div>
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
-        {% comment %} <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-        </div> {% endcomment %}
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ spot.image.url }}" class="d-block w-100" alt="...">
@@ -37,7 +31,10 @@
                         </li>
                         <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
                         <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
-                        <li><span class="fw-bold">작성자 : <img style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;" src="{{ spot.user.profile_image.url }}" alt=""></span><span>{{ spot.user.nickname }}</span></li>
+                        <li><span class="fw-bold">작성자 : <img
+                                    style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;"
+                                    src="{{ spot.user.profile_image.url }}" alt=""></span><span>
+                                {{ spot.user.nickname }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +107,8 @@
                     {% if request.user == comment.user %}
                     <form action="{% url 'places:comment_delete' spot.city.name spot.pk comment.pk %}" method="POST">
                         {% csrf_token %}
-                        <input class="text-danger bg-white ms-3 mb-3 border-1 border-danger text-decoration-none rounded-2"
+                        <input
+                            class="text-danger bg-white ms-3 mb-3 border-1 border-danger text-decoration-none rounded-2"
                             type="submit" value="리뷰 삭제">
                     </form>
                     {% endif %}

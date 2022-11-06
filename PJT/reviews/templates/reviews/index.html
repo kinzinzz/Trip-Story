@@ -39,65 +39,67 @@
       </a>
     </div>
   </div>
-  <div class="row row g-5">
-    {% for review in pageboard %}
-    <div class="col-6 col-lg-4 col-xl-3 my-3">
-      <div class="card inform-card" style="box-shadow: 1px 3px 5px 0px;">
-        <div style="  z-index: 1;position: absolute; top:145px; left: 15px;">
-          <span class="text-white fw-bold small" style="top: 15px;">
-            {{ review.start_day|date:'Y-m-d' }}~{{ review.end_day|date:'Y-m-d' }}
-        </div>
-        <span style=" font-size: 20px; color:white; top:165px; left: 15px; position:absolute; z-index: 1;">
-          {{ review.title }}</span>
-        <!-- 리뷰 이미지 -->
-
-        <a href="{% url 'reviews:detail' review.pk %}">
-          {% if review.image %}
-          <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
-            src="{{ review.image.url }}" class="card-img-top" alt="...">
-          {% else %}
-          <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
-            src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
-          {% endif %}
-        </a>
-
-        <div class="card-body">
-          <div>
-            <!-- 좋아요 수정중 -->
-            <p class="text-danger material-symbols-outlined">
-              favorite
-              <span class="text-black"
-                style="position: absolute; font-size: 16px; margin-left: 02px; margin-top:2.5px;">
-                {{ review.like.all | length }}</span>
-            </p>
+  <div class="d-flex justify-content-center row">
+    <div class="container row gx-5 col-12 col-xl-10 d-flex justify-content-center">
+      {% for review in pageboard %}
+      <div class="col-8 col-md-6 col-lg-4 col-xl-4 my-3 my-xl-5">
+        <div class="card inform-card" style="box-shadow: 1px 3px 5px 0px;">
+          <div style="  z-index: 1;position: absolute; top:145px; left: 15px;">
+            <span class="text-white fw-bold small" style="top: 15px;">
+              {{ review.start_day|date:'Y-m-d' }}~{{ review.end_day|date:'Y-m-d' }}
           </div>
-          <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.subtitle }}
-          </h5>
-          <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.city }}</h5>
-          <!-- 
+          <span style=" font-size: 20px; color:white; top:165px; left: 15px; position:absolute; z-index: 1;">
+            {{ review.title }}</span>
+          <!-- 리뷰 이미지 -->
+
+          <a href="{% url 'reviews:detail' review.pk %}">
+            {% if review.image %}
+            <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
+              src="{{ review.image.url }}" class="card-img-top" alt="...">
+            {% else %}
+            <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
+              src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
+            {% endif %}
+          </a>
+
+          <div class="card-body">
+            <div>
+              <!-- 좋아요 수정중 -->
+              <p class="text-danger material-symbols-outlined">
+                favorite
+                <span class="text-black"
+                  style="position: absolute; font-size: 16px; margin-left: 02px; margin-top:2.5px;">
+                  {{ review.like.all | length }}</span>
+              </p>
+            </div>
+            <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.subtitle }}
+            </h5>
+            <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.city }}</h5>
+            <!-- 
                 1. 리뷰 작성자가 프로필 이미지가 없는 경우 기본 이미지 처리 
                 2. 리뷰 클릭시 조회수 +기능 추가
                 3. 프로필 닉네임 프로필페이지에 연결
             -->
-          <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
-            <div class="user_info">
-              <a class="text-black" href="{% url 'accounts:profile' user.nickname %}">
-                {% if review.user.profile_image %}
-                <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
-                  src="{{ review.user.profile_image.url }}" alt="">
-                {% else %}
-                <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
-                  src="{% static 'images/logo.png' %}" alt="">
-                {% endif %}
-                {{ review.user }}
-              </a>
+            <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
+              <div class="user_info">
+                <a class="text-black" href="{% url 'accounts:profile' user.nickname %}">
+                  {% if review.user.profile_image %}
+                  <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                    src="{{ review.user.profile_image.url }}" alt="">
+                  {% else %}
+                  <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                    src="{% static 'images/logo.png' %}" alt="">
+                  {% endif %}
+                  {{ review.user.nickname }}
+                </a>
+              </div>
+              <span>조회수:{{ review.hits }}</span>
             </div>
-            <span>조회수:{{ review.hits }}</span>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
   <!-- 페이징처리 시작 -->
   <ul class="pagination justify-content-center" style="margin-top:70px;">
@@ -133,8 +135,6 @@
         <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
       </li>
       {% endif %}
-
-
   </ul>
   <!-- 페이징처리 끝 -->
 </div>

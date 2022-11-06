@@ -17,25 +17,25 @@ from places.models import City
 def index(request):
     # like 많은순으로 정렬하고 0~2등 가져오기
     citys = City.objects.all()
-    page = request.GET.get('page','1')
+    page = request.GET.get("page", "1")
     page_li = Review.objects.all()
     pag = page_li.annotate(like_count=Count("like"))
-    page_ = pag.order_by("-like_count")
+    page_ = pag.order_by("-pk")  # 작성 순으로 바꿨습니다.
     paginator = Paginator(page_, 6)
     page_obj = paginator.get_page(page)
-    
+
     # like 많은순으로 정렬하고 0~2등 가져오기
-     # reviews = (
+    # reviews = (
     #     models.Review.objects.all()
     #     .annotate(like_count=Count("like"))
     #     .order_by("-like_count")[0:6]
     # )
-    
+
     context = {
-        'pageboard': page_obj,
+        "pageboard": page_obj,
         "citys": citys,
     }
-    
+
     return render(request, "reviews/index.html", context)
 
 
@@ -132,7 +132,6 @@ def search_reviews(request, city_name):
             "query": query,
         },
     )
-
 
 
 # 좋아요 기능 비동기
