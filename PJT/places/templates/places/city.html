@@ -3,6 +3,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
+<span class="d-none">{{ city.update_hits }}</span>
 <div class="container">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb mt-3">
@@ -80,7 +81,7 @@
     <div class="d-grid gap-2">
         <button class="btn btn-outline-dark" type="button"
             onclick="location.href='{% url 'places:createspot' city.name %}'">
-            여행 장소 추가하기
+            {{ city.name }}의 관광지를 추가해주세요!
         </button>
     </div>
     <h2 class="content-title text-center fw-bold"> {{city.name}}의 인기 관광지 BEST 3 <a class="fs-6"
