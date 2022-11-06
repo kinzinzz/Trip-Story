@@ -1,5 +1,5 @@
-from django.db import models
 from imagekit.models import ProcessedImageField
+from django.db import models
 from imagekit.processors import ResizeToFill
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -12,8 +12,8 @@ class Spot(models.Model):
         ("힐링", "힐링"),
         ("액티비티", "액티비티"),
         ("맛집", "맛집"),
-        ("숙박", "숙박"),
         ("체험", "체험"),
+        ("숙박", "숙박"),
     )
     themes = models.CharField(max_length=4, choices=THEME_CHOICES)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

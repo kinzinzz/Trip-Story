@@ -6,7 +6,7 @@ from django.db.models import Count
 from .models import Review
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-
+from places.models import City
 from django.contrib import messages
 
 from django.db.models import Q
@@ -16,7 +16,6 @@ from django.db.models import Q
 # 리뷰 인덱스
 def index(request):
     # 페이징 처리
-
     page = request.GET.get('page','1')
     page_li = Review.objects.all()
     pag = page_li.annotate(like_count=Count("like"))
@@ -24,13 +23,18 @@ def index(request):
     paginator = Paginator(page_, 6)
     page_obj = paginator.get_page(page)
     
+
+    context = {
+        "pageboard":page_obj,
+        
+    }
     # like 많은순으로 정렬하고 0~2등 가져오기
      # reviews = (
     #     models.Review.objects.all()
     #     .annotate(like_count=Count("like"))
     #     .order_by("-like_count")[0:6]
     # )
-    return render(request, "reviews/index.html", {'pageboard': page_obj})
+    return render(request, "reviews/index.html", context)
 
 
 # 리뷰 생성
@@ -108,6 +112,8 @@ def like(request, review_pk):
     return redirect("reviews:detail", review_pk)
 
 
+
+
 # 리뷰 도시별 조회
 def search(request, kw):
 
@@ -120,8 +126,6 @@ def search(request, kw):
         )
 
     return render(request, "reviews/search.html", {"reviews": reviews})
-
-
 # 좋아요 기능 비동기
 # if request.user in review.like.all():
 #     review.like.remove(request.user)
