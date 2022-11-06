@@ -12,13 +12,13 @@
     align-items: center;
     ">
 
-    <h1 class="main-title">Let's Go!
+    <h1 class="main-title" id="main-title">Let's Go!
     </h1>
 </div>
 <div class="container">
     <h2 class="text-center content-title"> 여행지 </h2>
     <p class="content-sub-title text-center">여행지 별로 인기 장소를 찾아보세요</p>
-    <div class="btn-group btn-group-lg w-100 choice-place" role="group" aria-label="Large button group">
+    <div class="btn-group btn-group-lg choice-place" role="group" aria-label="Large button group">
         <button type="button" class="btn btn-dark fw-bold">주요 도시</button>
         {% for city in citys %}
         <button type="button" class="btn btn-outline-dark"

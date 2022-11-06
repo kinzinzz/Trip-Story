@@ -1,18 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
 <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0" />
+<div style="
+    background-image: url({% static 'images/community_background.png' %});
+    height : 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ">
+
+    <h1 class="main-title" id="main-title">Community
+    </h1>
+</div>
 <div class="container">
-    <div class="content pb-1">
+    <div class="content pb-1 pt-0">
         <div class="container">
-            <h1 class="text-center fw-bold">커뮤니티</h1>
-            <p class="mb-5 text-center text-secondary fw-bold">질문, 여행, 자유주제 등 자유롭게 글을 올려보세요</p>
+            <h1 class="text-center fw-bold content-title">커뮤니티</h1>
+            <p class="mb-5 text-center text-secondary content-sub-title">질문, 여행, 자유주제 등 자유롭게 글을 올려보세요</p>
+            <div class="d-grid gap-2 my-5">
+                <button class="btn btn-outline-dark mt-5" type="button"
+                    onclick="location.href='{% url 'articles:com_create' %}'">
+                    <span class="material-symbols-outlined fs-6 fw-bold">
+                        border_color글쓰기
+                    </span>
+                </button>
+            </div>
             <div class="table-responsive border boder-1 rounded-1 p-2 d-none d-md-block">
-                <table class="table custom-table">
+                <table class="table custom-table text-center">
                     <thead>
                         <tr>
                             <th scope="col-1">글 번호</th>
@@ -60,9 +80,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="py-3 d-flex justify-content-end">
-            <a class="btn btn-outline-secondary" href="{% url 'articles:com_create' %}">글쓰기</a>
-        </div>
+        
     </div>
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center" style="margin-top:70px;">
