@@ -58,7 +58,7 @@
                                 <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
                                     src="{% static 'images/logo.png' %}" alt="">
                                 {% endif %}
-                                {{ review.user }}
+                                {{ review.user.nickname }}
                             </a>
                         </div>
                         <span>조회수:{{ review.hits }}</span>

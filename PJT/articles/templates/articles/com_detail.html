@@ -46,11 +46,11 @@
             <form action="{% url 'articles:com_comment' com.pk %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-9 col-md-10 col-xxl-11">
                         {% bootstrap_form comment_form %}
                     </div>
-                    <div class="col-2">
-                        <input class="btn btn-outline-success" type="submit" value="댓글달기">
+                    <div class="col-3 col-md-2 col-xxl-1">
+                        <input class="btn btn-outline-success w-100" type="submit" value="등록">
                     </div>
                 </div>
             </form>

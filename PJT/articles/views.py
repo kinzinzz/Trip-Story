@@ -4,12 +4,20 @@ from reviews.models import Review
 from .models import Community, Comcomment
 from .forms import CommunityForm, ComcommentForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, "articles/index.html")
+    reviews = Review.objects.annotate(like_count=Count("like")).order_by("-like_count")[
+        :3
+    ]
+    context = {
+        "reviews": reviews,
+    }
+    return render(request, "articles/index.html", context)
 
 
 def search(request):
@@ -35,9 +43,12 @@ def search(request):
 
 
 def community(request):
-    coms = Community.objects.all()
+    page = request.GET.get("page", "1")
+    pag = Community.objects.order_by("-pk")
+    paginator = Paginator(pag, 10)
+    page_obj = paginator.get_page(page)
     context = {
-        "coms": coms,
+        "coms": page_obj,
     }
     return render(request, "articles/community.html", context)
 

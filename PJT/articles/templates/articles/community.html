@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="{% static 'css/community_style.css' %}">
 
 <div class="container">
-    <div class="content">
+    <div class="content pb-1">
         <div class="container">
             <h1 class="text-center fw-bold">커뮤니티</h1>
             <p class="mb-5 text-center text-secondary fw-bold">질문, 여행, 자유주제 등 자유롭게 글을 올려보세요</p>
-            <div class="table-responsive border boder-1 rounded-1 p-2">
+            <div class="table-responsive border boder-1 rounded-1 p-2 d-none d-md-block">
                 <table class="table custom-table">
                     <thead>
                         <tr>
@@ -36,16 +36,69 @@
                                 <small class="d-block">{{ com.content|truncatechars:15 }}</small>
                             </td>
                             <td>{{ com.category }}</td>
-                            <td>{{ com.created_at|date:'Y-m-d' }}</td>
+                            <td>{{ com.created_at|date:'Y-m-d H:i' }}</td>
                         </tr>
                     </tbody>
                     {% endfor %}
                 </table>
+            </div>
+            <div class="d-md-none d-flex justify-content-center row">
+                {% for com in coms %}
+                <div class="border border-2 rounded-2 p-4 m-4 col-12">
+                    <div class="card-body">
+                        <a href="{% url 'articles:com_detail' com.pk %}" class="link-secondary">
+                            <h5 class="card-title my-3 fw-bold">{{ com.title|truncatechars:15 }}</h5>
+                        </a>
+
+                        <h6 class="card-subtitle mb-3 text-muted">{{ com.content|truncatechars:15 }}</h6>
+                        <p class="card-text">작성자 : {{ com.user.nickname }}</p>
+                        <p class="card-text">카테고리 : {{ com.category }}</p>
+                        <p class="card-text">no.{{ com.pk }}</p>
+                        <p class="card-text">{{ com.created_at|date:'Y-m-d H:i' }}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="py-3 d-flex justify-content-end">
             <a class="btn btn-outline-secondary" href="{% url 'articles:com_create' %}">글쓰기</a>
         </div>
     </div>
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center" style="margin-top:70px;">
+        <!-- 이전페이지 -->
+        {% if pageboard.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ pageboard.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in pageboard.paginator.page_range %}
+        {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} <li
+            class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if pageboard.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pageboard.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
 </div>
 {% endblock content %}
