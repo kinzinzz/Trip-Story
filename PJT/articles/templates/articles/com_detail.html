@@ -30,9 +30,9 @@
             <p class="text-secondary">카테고리 : {{ com.category }}
             </p>
             {% if com.created_at == com.updated_at %}
-            <p class="text-secondary">작성일 : {{ com.created_at|date:'Y-m-d' }}</p>
+            <p class="text-secondary">작성일 : {{ com.created_at|date:'Y-m-d H:i' }}</p>
             {% else %}
-            <p class="text-secondary">작성일 : {{ com.updated_at|date:'Y-m-d' }}
+            <p class="text-secondary">작성일 : {{ com.updated_at|date:'Y-m-d H:i' }}
                 (수정됨)</p>
             {% endif %}
         </div>

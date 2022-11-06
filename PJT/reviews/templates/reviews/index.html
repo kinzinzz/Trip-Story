@@ -16,8 +16,8 @@
 </div>
 <div class="container my-5">
   <div class="content_header text-center">
-    <h2 class="fw-bolder content-title">여행자들의 일정보기</h2>
-    <p class="text-secondary content-sub-title">여행자들의 여행 리뷰를 좋아요 순으로 보여드려요</p>
+    <h2 class="fw-bolder">여행자들의 일정보기</h2>
+    <p class="text-secondary">여행자들의 여행 리뷰를 지역별로 보여드려요</p>
     <div class="clear" style="clear: both;"></div>
   </div>
   <div class="container">
@@ -87,7 +87,7 @@
             -->
             <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
               <div class="user_info">
-                <a class="text-black" href="{% url 'accounts:profile' user.nickname %}">
+                <a class="text-black" href="{% url 'accounts:profile' review.user.nickname %}">
                   {% if review.user.profile_image %}
                   <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
                     src="{{ review.user.profile_image.url }}" alt="">

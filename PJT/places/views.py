@@ -9,6 +9,7 @@ from django.db.models import Avg, Count
 
 def inform(request):
     citys = City.objects.all()
+    city3 = City.objects.order_by("-hits")[:3]
     """
     도시별 날씨
     import requests
@@ -50,6 +51,7 @@ def inform(request):
     """
     context = {
         "citys": citys,
+        "city3": city3,
         # "weather_data": weather_data,
     }
     return render(request, "places/inform.html", context)
