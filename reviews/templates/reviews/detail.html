@@ -24,6 +24,7 @@
         <img src="{{ review.review_image.url }}" class="d-block w-100" alt="...">
         {% else %}
         <img src="{% static 'images/review2.jpg' %}" class="d-block w-100" alt="...">
+        {% endif %}
         <div class="carousel-caption d-md-block spot-font-bg">
           <h5 class="main-title-sub carousel-font carousel-title text-start">{{ review.title }}
             ({{ review.start_day|timesince:review.end_day }})</h5>
