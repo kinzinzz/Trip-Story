@@ -45,6 +45,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 DEBUG = os.environ.get("DEBUG", "True") != "False"
 
+
 ALLOWED_HOSTS = ["*"]
 
 
