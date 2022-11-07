@@ -103,6 +103,7 @@
     </div>
   </div>
   <!-- 페이징처리 시작 -->
+  <nav aria-label="...">
   <ul class="pagination justify-content-center" style="margin-top:70px;">
     <!-- 이전페이지 -->
     {% if pageboard.has_previous %}
@@ -116,14 +117,16 @@
     {% endif %}
     <!-- 페이지리스트 -->
     {% for page_number in pageboard.paginator.page_range %}
-    {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} <li
-      class="page-item active" aria-current="page">
+       {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} 
+        {% if page_number == pageboard.number %}
+    <li class="page-item active" aria-current="page" >
       <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
       </li>
       {% else %}
       <li class="page-item">
         <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
       </li>
+        {% endif %}
       {% endif %}
       {% endfor %}
       <!-- 다음페이지 -->
@@ -137,6 +140,7 @@
       </li>
       {% endif %}
   </ul>
+</nav>
   <!-- 페이징처리 끝 -->
 </div>
 
