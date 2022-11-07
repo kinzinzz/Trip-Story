@@ -23,7 +23,14 @@
   <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="{{ review.image.url }}" class="d-block w-100" alt="...">
+        {% if review.review_image %}
+        <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
+          src="{{ review.review_image.url }}" class="card-img-top" alt="...">
+        {% else %}
+        <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
+          src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
+        {% endif %}
+        <img src="{{ review.review_image.url }}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-md-block spot-font-bg">
           <h5 class="main-title-sub carousel-font carousel-title text-start">{{ review.title }}
             ({{ review.start_day|timesince:review.end_day }})</h5>
