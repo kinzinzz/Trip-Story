@@ -22,7 +22,7 @@ class Review(models.Model):
         (None, "선택"),
         ("나홀로여행", "나홀로여행"),
         ("친구와함께", "친구와함께"),
-        ("커플여행", "가족여행"),
+        ("커플여행", "커플여행"),
         ("비즈니스여행", "비즈니스여행"),
         ("가족여행", "가족여행"),
     )
@@ -77,5 +77,3 @@ class Review(models.Model):
 class Review_city(models.Model):
     city = models.ForeignKey('places.City', on_delete=models.CASCADE)
     review = models.ForeignKey('Review', on_delete=models.CASCADE)
-
-

@@ -54,7 +54,6 @@
           <span style=" font-size: 20px; color:white; top:165px; left: 15px; position:absolute; z-index: 1;">
             {{ review.title }}</span>
           <!-- 리뷰 이미지 -->
-
           <a href="{% url 'reviews:detail' review.pk %}">
             {% if review.image %}
             <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
@@ -64,11 +63,10 @@
               src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
             {% endif %}
           </a>
-
           <div class="card-body">
             <div>
               <!-- 좋아요 수정중 -->
-              <p class="card-text"><small><a href="{% url 'reviews:like' review.pk %}">
+              <a href="{% url 'reviews:like' review.pk %}">
                 <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
               </a>
                 <span class="text-black"
@@ -86,7 +84,7 @@
             -->
             <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
               <div class="user_info">
-                <a class="text-black" href="{% url 'accounts:profile' review.user.nickname %}">
+                <a class="text-black" href="{% url 'accounts:profile' user.nickname %}">
                   {% if review.user.profile_image %}
                   <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
                     src="{{ review.user.profile_image.url }}" alt="">
