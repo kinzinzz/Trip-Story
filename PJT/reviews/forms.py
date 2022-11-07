@@ -2,6 +2,13 @@ from importlib.resources import contents
 from . import models
 from django import forms
 from django.forms.widgets import NumberInput
+from places.models import City
+
+
+class CustomMMCF(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, city):
+        return city.name
+
 
 # 도시 선택
 THEME_CHOICES = (
@@ -16,14 +23,7 @@ THEME_CHOICES = (
 # 리뷰 작성폼
 class ReviewForm(forms.ModelForm):
 
-    city = forms.CharField(
-        label="도시",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "ex) #서울#부산",
-            }
-        ),
-    )
+    city = CustomMMCF(queryset=City.objects.all(), widget=forms.CheckboxSelectMultiple)
 
     themes = forms.ChoiceField(label="테마 선택", choices=THEME_CHOICES, required=True)
 
@@ -61,7 +61,8 @@ class ReviewForm(forms.ModelForm):
             "title",
             "subtitle",
             "content",
-            "image",
+            "thumbnail_image",
+            "review_image",
             "start_day",
             "end_day",
         )
@@ -75,4 +76,4 @@ class ReviewForm(forms.ModelForm):
                 },
             ),
         }
-        labels = {"content": ""}
+        labels = {"content": "", "thumbnail_image": "썸네일 이미지", "review_image": "리뷰 이미지"}
