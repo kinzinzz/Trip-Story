@@ -113,7 +113,7 @@ def like(request, review_pk):
     else:
         review.like.add(request.user)
 
-    return redirect("reviews:detail", review_pk)
+    return redirect("reviews:index", review_pk)
 
 
 
