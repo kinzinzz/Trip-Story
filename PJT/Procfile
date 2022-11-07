@@ -1,1 +1,0 @@
-web: gunicorn PJT.wsgi --log-file-
