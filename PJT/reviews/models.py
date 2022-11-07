@@ -1,13 +1,13 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 import datetime
-
+from places.models import City
 # User 모델 가져오기
 User = get_user_model()
-
-
+   
 class Review(models.Model):
 
     """
@@ -17,18 +17,21 @@ class Review(models.Model):
     )
     """
 
-    city_choices = [
+    # 테마
+    THEME_CHOICES = (
         (None, "선택"),
-        ("서울", "서울"),
-        ("제주", "제주"),
-        ("부산", "부산"),
-    ]
-    city = models.CharField(max_length=2, choices=city_choices, default="선택")
+        ("나홀로여행", "나홀로여행"),
+        ("친구와함께", "친구와함께"),
+        ("커플여행", "가족여행"),
+        ("비즈니스여행", "비즈니스여행"),
+        ("가족여행", "가족여행"),
+    )
+    themes = models.CharField(max_length=10, choices=THEME_CHOICES, default='')
 
-    # )
+    city = models.ManyToManyField(City, through="Review_City", related_name="reviewcity")
 
     # 좋아요
-    like = models.ManyToManyField(User, related_name="review_like", blank=True)
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="review_like", blank=True)
 
     # 리뷰 내용
     content = models.TextField()
@@ -61,7 +64,7 @@ class Review(models.Model):
     end_day = models.DateField(default=datetime.date.today, help_text="날짜 및 시간")
 
     # 리뷰 작성자
-    user = models.ForeignKey(User, related_name="review_user", on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # 리뷰 조회수
     hits = models.PositiveIntegerField(default=0)
@@ -70,3 +73,9 @@ class Review(models.Model):
     def update_hits(self):
         self.hits = self.hits + 1
         self.save()
+
+class Review_city(models.Model):
+    city = models.ForeignKey('places.City', on_delete=models.CASCADE)
+    review = models.ForeignKey('Review', on_delete=models.CASCADE)
+
+

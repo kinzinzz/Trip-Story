@@ -4,17 +4,22 @@ from django import forms
 from django.forms.widgets import NumberInput
 
 # 도시 선택
-city_choices = [
-    (None, "선택"),
-    ("서울", "서울"),
-    ("제주", "제주"),
-    ("부산", "부산"),
-]
+THEME_CHOICES = (
+        (None, "선택"),
+        ("나홀로여행", "나홀로여행"),
+        ("친구와함께", "친구와함께"),
+        ("커플여행", "가족여행"),
+        ("비즈니스여행", "비즈니스여행"),
+        ("가족여행", "가족여행"),
+    )
 
 # 리뷰 작성폼
 class ReviewForm(forms.ModelForm):
-    city = forms.ChoiceField(label="리뷰 도시선택", choices=city_choices, required=True)
 
+    city = forms.CharField(label="도시")
+
+    themes = forms.ChoiceField(label="테마 선택", choices=THEME_CHOICES, required=True)
+    
     title = forms.CharField(
         label="",
         widget=forms.TextInput(
@@ -45,6 +50,7 @@ class ReviewForm(forms.ModelForm):
         model = models.Review
         fields = (
             "city",
+            "themes",
             "title",
             "subtitle",
             "content",
