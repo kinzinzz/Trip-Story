@@ -4,55 +4,18 @@ from .forms import CityForm, SpotForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Count
 
-# Create your views here.
+# 날씨모듈
+import requests
+from bs4 import BeautifulSoup
+from datetime import date
 
 
 def inform(request):
     citys = City.objects.all()
     city3 = City.objects.order_by("-hits")[:3]
-    """
-    도시별 날씨
-    import requests
-            
-    city_names = []
-    city_name_dict = {
-        "서울": "Seoul",
-        "부산": "Busan",
-        "제주": "Jeju",
-        "강릉": "Gangneung",
-    }
-    
-    # 도시를 검색하기위해 영어로 변환(DB에 추가되는대로 dict에 추가)
-    for city in citys:
-        city_names.append(city_name_dict[city.name])
-
-    weather_data = []
-    for city in city_names:
-        url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=143e860355ea52d6321d409a05995ecc&lang=kr/"
-        city_weather = requests.get(
-            url.format(city)
-        ).json()
-        
-        # 영어로 검색한 도시이름 다시 한글로 변환
-        reverse_dict = dict(map(reversed, city_name_dict.items()))
-        city = reverse_dict[city]
-
-        # city 날씨정보
-        weather = {
-            "city": city,
-            "temperature": city_weather["main"]["temp"],
-            "description": city_weather["weather"][0]["description"],
-            "icon": city_weather["weather"][0]["icon"],
-        }
-        
-        # city 날씨정보 리스트
-        weather_data.append(weather)
-      
-    """
     context = {
         "citys": citys,
         "city3": city3,
-        # "weather_data": weather_data,
     }
     return render(request, "places/inform.html", context)
 
@@ -117,10 +80,52 @@ def city(request, cityname):
         if len(spots) == 3:
             break
 
+    # 도시별 날씨예보
+
+    today = date.today()
+    time_list = ["현재날씨", "내일날씨", "모레날씨"]
+    temp_data = {}
+
+    for time in time_list:
+        html = requests.get(
+            f"https://search.naver.com/search.naver?query={city.name}{time}"
+        )
+        soup = BeautifulSoup(html.text, "html.parser")
+
+        if time == "현재날씨":
+            data = soup.find("div", {"class": "_today"})
+            find_temp = data.find("div", {"class": "temperature_text"}).text.strip()[5:]
+            find_sky = data.find("span", {"class": "weather before_slash"}).text.strip()
+            temp_data[f"{time}"] = find_temp + " | " + find_sky
+
+        else:
+            html = requests.get(
+                f"https://search.naver.com/search.naver?query={city.name}{time}"
+            )
+            am_data = soup.find("div", {"class": "_am"})
+            find_am_temp = am_data.find(
+                "div", {"class": "temperature_text"}
+            ).text.strip()[5:]
+            find_am_sky = am_data.find("p", {"class": "summary"}).text.strip()
+            temp_data[f"am_{time}"] = find_am_temp + " | " + find_am_sky
+
+            pm_data = soup.find("div", {"class": "_pm"})
+            find_pm_temp = pm_data.find(
+                "div", {"class": "temperature_text"}
+            ).text.strip()[5:]
+            find_pm_sky = pm_data.find("p", {"class": "summary"}).text.strip()
+            temp_data[f"pm_{time}"] = find_pm_temp + " | " + find_pm_sky
+
+    # 도시별 날씨 예보
+
     context = {
         "city": city,
         "spots": spots,
         "visitspots": visitspots,
+        # 날씨 데이터
+        "월": today.month,
+        "일": today.day,
+        "temp_data": temp_data,
     }
 
     return render(request, "places/city.html", context)
