@@ -57,7 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     profile_image = ProcessedImageField(
         upload_to="profile",
-        blank=True,
+        null=True,
         processors=[ResizeToFill(300, 480)],
         format="JPEG",
         options={"quality": 100},
