@@ -27,9 +27,9 @@
                     <!-- 리뷰 이미지 -->
 
                     <a href="{% url 'reviews:detail' review.pk %}">
-                        {% if review.image %}
+                        {% if review.thumbnail_image %}
                         <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
-                            src="{{ review.image.url }}" class="card-img-top" alt="...">
+                            src="{{ review.thumbnail_image.url }}" class="card-img-top" alt="...">
                         {% else %}
                         <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
                             src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
@@ -48,7 +48,10 @@
                         </div>
                         <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.subtitle }}
                         </h5>
-                        <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.city }}</h5>
+                        {% for city in review.city.all %}
+                            <a href="{% url 'reviews:search_reviews' city.name %}"><span class="card-title"
+                            style="font-size:15px; color: grey;">#{{ city.name }}</span></a>
+                        {% endfor %}
                         <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
                             <div class="user_info">
                                 <a class="text-black" href="{% url 'accounts:profile' review.user.nickname %}">
