@@ -68,8 +68,9 @@
           <div class="card-body">
             <div>
               <!-- 좋아요 수정중 -->
-              <p class="text-danger material-symbols-outlined">
-                favorite
+              <p class="card-text"><small><a href="{% url 'reviews:like' review.pk %}">
+                <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
+              </a>
                 <span class="text-black"
                   style="position: absolute; font-size: 16px; margin-left: 02px; margin-top:2.5px;">
                   {{ review.like.all | length }}</span>
