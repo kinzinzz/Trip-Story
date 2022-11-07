@@ -149,6 +149,30 @@ def citycreate(request):
     return render(request, "places/citycreate.html", context)
 
 
+@login_required
+def cityupdate(request, cityname):
+    city = City.objects.get(name=cityname)
+    if request.method == "POST":
+        city_form = CityForm(request.POST, request.FILES, instance=city)
+        if city_form.is_valid():
+            city_form.save()
+            return redirect("places:city", cityname)
+
+    else:
+        city_form = CityForm(instance=city)
+
+    context = {
+        "city_form": city_form,
+    }
+
+    return render(request, "places/citycreate.html", context)
+
+
+def citydelete(request, cityname):
+    City.objects.get(name=cityname).delete()
+    return redirect("places:inform")
+
+
 def spot(request, cityname, pk):
     spot = Spot.objects.get(pk=pk)
     comments = Spotcomment.objects.filter(spot=spot)
