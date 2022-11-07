@@ -5,9 +5,11 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 import datetime
 from places.models import City
+
 # User 모델 가져오기
 User = get_user_model()
-   
+
+
 class Review(models.Model):
 
     """
@@ -26,12 +28,14 @@ class Review(models.Model):
         ("비즈니스여행", "비즈니스여행"),
         ("가족여행", "가족여행"),
     )
-    themes = models.CharField(max_length=10, choices=THEME_CHOICES, default='')
-
-    city = models.ManyToManyField(City, through="Review_City", related_name="reviewcity")
+    themes = models.CharField(max_length=10, choices=THEME_CHOICES, default="")
+    # 리뷰 도시들
+    city = models.ManyToManyField(City, related_name="review_city", blank=True)
 
     # 좋아요
-    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="review_like", blank=True)
+    like = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="review_like", blank=True
+    )
 
     # 리뷰 내용
     content = models.TextField()
@@ -42,7 +46,7 @@ class Review(models.Model):
     # 부제
     subtitle = models.CharField(max_length=80)
 
-    # 이미지
+    # 썸네일 이미지
     image = ProcessedImageField(
         upload_to="media/",
         blank=True,
@@ -50,7 +54,13 @@ class Review(models.Model):
         format="JPEG",
         options={"quality": 60},
     )
-
+    # 메인 이미지
+    # main_image = ProcessedImageField(
+    #     upload_to="avatars",
+    #     processors=[ResizeToFill(720, 480)],
+    #     format="JPEG",
+    #     options={"quality": 100},
+    # )
     # 작성시간
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -73,7 +83,3 @@ class Review(models.Model):
     def update_hits(self):
         self.hits = self.hits + 1
         self.save()
-
-class Review_city(models.Model):
-    city = models.ForeignKey('places.City', on_delete=models.CASCADE)
-    review = models.ForeignKey('Review', on_delete=models.CASCADE)

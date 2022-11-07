@@ -23,24 +23,24 @@
       <button type="button" class="btn btn-dark fw-bold">주요 도시</button>
       {% for city in citys %}
       <button type="button" class="btn btn-outline-dark"
-          onclick="location.href='{% url 'places:city' city.name %}' ">{{ city.name }}</button>
+        onclick="location.href='{% url 'reviews:search_reviews' city.name %}' ">
+        {{ city.name }}</button>
       {% endfor %}
     </div>
     {% if user.is_authenticated and user.is_admin %}
     <div class="d-grid gap-2 mt-3">
-        <button class="btn btn-dark" type="button" onclick="location.href='{% url 'places:citycreate' %}' ">도시
-            추가 +</button>
+      <button class="btn btn-dark" type="button" onclick="location.href='{% url 'places:citycreate' %}' ">도시
+        추가 +</button>
     </div>
     {% endif %}
     <div class="d-grid gap-2">
-      <button class="btn btn-outline-dark mt-5" type="button"
-          onclick="location.href='{% url 'reviews:create' %}'">
-          <span class="material-symbols-outlined fs-6">
-            border_color리뷰작성하기
-          </span>
+      <button class="btn btn-outline-dark mt-5" type="button" onclick="location.href='{% url 'reviews:create' %}'">
+        <span class="material-symbols-outlined fs-6">
+          border_color리뷰작성하기
+        </span>
       </button>
     </div>
-    
+
   </div>
   <div class="d-flex justify-content-center row">
     <div class="container row gx-5 col-12 col-xl-10 d-flex justify-content-center">
@@ -69,19 +69,17 @@
               <a href="{% url 'reviews:like' review.pk %}">
                 <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
               </a>
-                <span class="text-black"
-                  style="position: absolute; font-size: 16px; margin-left: 02px; margin-top:2.5px;">
-                  {{ review.like.all | length }}</span>
+              <span class="text-black"
+                style="position: absolute; font-size: 16px; margin-left: 02px; margin-top:2.5px;">
+                {{ review.like.all | length }}</span>
               </p>
             </div>
             <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.subtitle }}
             </h5>
-            <h5 class="card-title" style="font-size:15px; color: grey;">{{ review.city }}</h5>
-            <!-- 
-                1. 리뷰 작성자가 프로필 이미지가 없는 경우 기본 이미지 처리 
-                2. 리뷰 클릭시 조회수 +기능 추가
-                3. 프로필 닉네임 프로필페이지에 연결
-            -->
+            {% for city in review.city.all %}
+            <a href="{% url 'reviews:search_reviews' city.name %}"><span class="card-title"
+                style="font-size:15px; color: grey;">#{{ city.name }}</span></a>
+            {% endfor %}
             <div class="text-muted d-flex justify-content-between" style="font-size:15px; color: grey;">
               <div class="user_info">
                 <a class="text-black" href="{% url 'accounts:profile' user.nickname %}">
@@ -118,7 +116,7 @@
     {% endif %}
     <!-- 페이지리스트 -->
     {% for page_number in pageboard.paginator.page_range %}
-       {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} 
+      {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} 
         {% if page_number == pageboard.number %}
     <li class="page-item active" aria-current="page" >
       <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>

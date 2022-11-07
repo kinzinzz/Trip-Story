@@ -4,61 +4,66 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0"/>
 
 {% block content %}
-  <span class="d-none">{{ review.update_hits }}</span>
-  <nav class="mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb" style="margin-left: 145px; font-size: 14px;">
-      <li class="breadcrumb-item">
-        <a href="{% url 'reviews:index' %}">리뷰 목록</a>
-      </li>
-      <li class="breadcrumb-item active">
-        <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
-      </li>
-    </ol>
-  </nav>
+  <div class="container">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb mt-3">
+        <li class="breadcrumb-item">
+          <a href="{% url 'reviews:index' %}">리뷰 목록</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
   <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="{{ review.image.url }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-md-block spot-font-bg">
-            <h5 class="main-title-sub carousel-font carousel-title text-start" style="font-size:2.5rem">{{ review.title }}({{ review.start_day|timesince:review.end_day }})</h5>
-            <div class="d-flex justify-content-between">
-              <p class="card-text text-start ms-5" style="font-size:1.0rem;">{{ review.start_day}}
+            <h5 class="main-title-sub carousel-font carousel-title text-start">{{ review.title }}({{ review.start_day|timesince:review.end_day }})</h5>
+            <div class="d-flex justify-content-between row">
+              <p class="card-text text-start ms-5 carousel-font col-12 col-lg-6">{{ review.start_day}}
                 ~
                 {{ review.end_day }}
                 <span class="crad-text badge rounded-pill text-bg-secondary">{{ review.themes }}</span>
               </p>
-              <ul class="place-inform-lst d-flex  justify-content-evenly carousel-font">
+              <ul class="place-inform-lst d-flex carousel-font col-12 col-lg-6 ms-4">
                 <li>
-                  <span>
-                    <span class="fw-bold"></span>
+                  <a class="text-white text-decoration-none" href="{% url 'accounts:profile' review.user.nickname %}">
+                    <span class="fw-bold ms-4" style="padding-right:3rem;">작성자 :
+                      <img style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;" src="{{ review.user.profile_image.url }}" alt="">{{ review.user.nickname }}
+                    </span>
+                  </a>
+                <li>
+                  <div class="card-text ms-0">
                     <small>
                       <a href="{% url 'reviews:like' review.pk %}">
-                        <img style="width: 2.0rem;" src="{% static 'images/heart.png' %}" alt="">
+                        <img style="width: 2.3rem;" src="{% static 'images/heart.png' %}" alt="">
                       </a>
                     </small>
-                    <span style="font-size: 1.5rem; margin:0 0.5rem;">{{ review.like.all | length  }}
-                    </li>
-                    <li class="fw-bold text-white ">
-                      <span class="fw-bold" style="padding-right:5rem;">작성자 :
-                        <a class="text-white text-decoration-none" href="{% url 'accounts:profile' review.user.nickname %}">
-                          <img style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;" src="{{ review.user.profile_image.url }}" alt="">{{ review.user.nickname }}
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+                  </div>
+                </li>
+              </li>
+              <li class="">
+                <span style="font-size: 1.3rem; margin:0 1rem;">{{ review.like.all | length  }}
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
-        <p class="mt-5" style="font-size:1.2rem;">{{ review.content }}</p>
-        <br>
-        {% if user == review.user %}
-          <div class="d-flex justify-content-end">
-            <a class="btn btn-sm btn-outline-secondary mx-2" href="{% url 'reviews:update' review.pk %}">수정</a>
-            <a class="btn btn-sm btn-outline-danger mx-2" href="{% url 'reviews:delete' review.pk %}">삭제</a>
-          </div>
-        {% endif %}
       </div>
-    {% endblock content%}
+    </div>
+  </div>
+  <p class="mt-5" style="font-size:1.2rem;">{{ review.content }}</p>
+  <br>
+  {% if user == review.user %}
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-sm btn-outline-secondary mx-2" href="{% url 'reviews:update' review.pk %}">수정</a>
+      <a class="btn btn-sm btn-outline-danger mx-2" href="{% url 'reviews:delete' review.pk %}">삭제</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock content%}

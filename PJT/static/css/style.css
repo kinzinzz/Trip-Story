@@ -217,18 +217,20 @@ a {
 .carousel-inner>.carousel-item>img {
   top: 0;
   left: 0;
-  height: 40rem;
-}
-
-.carousel-font {
-  text-shadow: -2px 1 #000, 1 2px #000, 2px 1 #000, 1 -2px #000;
-  font-size: 1.4rem;
+  height:calc(25rem + 10vw);
 }
 
 .carousel-title {
   margin: 0 0 1rem 2rem;
-  font-size: 3rem;
+  font-size: calc(1rem + 2vw);
 }
+
+.carousel-font {
+  text-shadow: -2px 1 #000, 1 2px #000, 2px 1 #000, 1 -2px #000;
+  font-size: calc( + 0.5vw);
+}
+
+
 
 .spot-font-bg {
   left: 0;
