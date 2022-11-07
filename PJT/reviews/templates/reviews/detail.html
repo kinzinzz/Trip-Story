@@ -1,96 +1,70 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap5 %}
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0" />
+
 {% block content %}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0"/>
-  {% load django_bootstrap5 %}
-
-  <div class=" mx-5 my-3">
-    <div class="container">
-      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb" style="margin-left: 145px; font-size: 14px;">
-          <li class="breadcrumb-item">
-            <a href="{% url 'reviews:index' %}">여행지</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
-          </li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-  <div class="container d-flex justify-content-center">
-    <div class="card text-bg-dark" style="width: 1000px;">
-      <img style=" height: 450px;" src="{{ review.image.url }}" class="card-img" alt="...">
-      <div class="card-img-overlay" style="margin-top:320px;">
-        <h5 class="card-title">{{ review.title }}
-          ({{ review.start_day|timesince:review.end_day }})</h5>
-        <p class="card-text">{{ review.start_day}}
-          ~
-          {{ review.end_day }}
-          <span class="crad-text badge rounded-pill text-bg-secondary">{{ review.themes }}</span>
-        </p>
-        <p class="card-text">
-          <small>
-            <a href="{% url 'reviews:like' review.pk %}">
-              <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
-            </a>
-            <span style="color: white; position: absolute; font-size: 18px; margin-left: 02px; margin-top:0px;">{{ review.like.all | length  }}</span></small>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex my-5 grid justify-content-center" style="--bs-columns: 10; --bs-gap: 1rem;">
-    <div class="card text-center g-col-6" style="width: 700px;">
-      <div class="card-header">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">내용</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-              <a href="{% url 'articles:community' %}">커뮤니티</a>
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">지도</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled="disabled"></button>
-          </li>
-        </ul>
-
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="height:400px;">{{ review.content }}</div>
-          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-          <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0" style="height:500px;">
-            <div id="map" style="width:100%;height:500px;"></div>
+<nav class="mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="margin-left: 145px; font-size: 14px;">
+    <li class="breadcrumb-item">
+      <a href="{% url 'reviews:index' %}">리뷰 목록</a>
+    </li>
+    <li class="breadcrumb-item active">
+      <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+    </li>
+  </ol>
+</nav>
+<div class="container">
+  <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ review.image.url }}" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-md-block spot-font-bg">
+          <h5 class="main-title-sub carousel-font carousel-title text-start">{{ review.title }}({{
+            review.start_day|timesince:review.end_day }})</h5>
+          <div class="d-flex justify-content-between">
+            <p class="card-text text-start ms-5" style="font-size:1.5rem;">{{ review.start_day}}
+              ~
+              {{ review.end_day }}
+              <span class="crad-text badge rounded-pill text-bg-secondary">{{ review.themes }}</span>
+            </p>
+            <ul class="place-inform-lst d-flex carousel-font">
+              <li>
+                <div class="card-text">
+                  <small>
+                    <a href="{% url 'reviews:like' review.pk %}">
+                      <img style="width: 2.3rem;" src="{% static 'images/heart.png' %}" alt="">
+                    </a>
+                  </small>
+                </div>
+              </li>
+              <li class="ms-2">
+                <span style="font-size: 1.3rem; margin:0 1.2rem;">{{ review.like.all | length }}
+                </span>
+              </li>
+              <li>
+                <a class="text-white text-decoration-none" href="{% url 'accounts:profile' review.user.nickname %}">
+                  <span class="fw-bold ms-5" style="padding-right:5rem;">작성자 : <img
+                      style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;"
+                      src="{{ review.user.profile_image.url }}" alt="">{{ review.user.nickname }}
+                  </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <img src="{{ review.image.url }}" alt="">
   </div>
 
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f53687f99d0ba2cb683a2427e900bb2e"></script>
-  <script>
-    var container = document.getElementById('map');
-    var options = {
-      center: new kakao
-        .maps
-        .LatLng(33.450701, 126.570667),
-      level: 4
-    };
-    var map = new kakao
-      .maps
-      .Map(container, options);
-    var mapTypeControl = new kakao
-      .maps
-      .MapTypeControl();
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-    var zoomControl = new kakao
-      .maps
-      .ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-  </script>
-
-{% endblock %}
+  <p class="mt-5" style="font-size:1.4rem;">{{ review.content }}</p>
+  <br>
+  {% if user == spot.user %}
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-sm btn-outline-secondary mx-2" href="{% url 'places:updatespot' spot.city.name spot.pk %}">수정</a>
+    <a class="btn btn-sm btn-outline-danger mx-2" href="{% url 'places:deletespot' spot.city.name spot.pk %}">삭제</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock content%}

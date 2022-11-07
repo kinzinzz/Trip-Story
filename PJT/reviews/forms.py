@@ -5,21 +5,28 @@ from django.forms.widgets import NumberInput
 
 # 도시 선택
 THEME_CHOICES = (
-        (None, "선택"),
-        ("나홀로여행", "나홀로여행"),
-        ("친구와함께", "친구와함께"),
-        ("커플여행", "가족여행"),
-        ("비즈니스여행", "비즈니스여행"),
-        ("가족여행", "가족여행"),
-    )
+    (None, "선택"),
+    ("나홀로여행", "나홀로여행"),
+    ("친구와함께", "친구와함께"),
+    ("커플여행", "가족여행"),
+    ("비즈니스여행", "비즈니스여행"),
+    ("가족여행", "가족여행"),
+)
 
 # 리뷰 작성폼
 class ReviewForm(forms.ModelForm):
 
-    city = forms.CharField(label="도시")
+    city = forms.CharField(
+        label="도시",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "ex) #서울#부산",
+            }
+        ),
+    )
 
     themes = forms.ChoiceField(label="테마 선택", choices=THEME_CHOICES, required=True)
-    
+
     title = forms.CharField(
         label="",
         widget=forms.TextInput(
