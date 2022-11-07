@@ -12,13 +12,6 @@ User = get_user_model()
 
 class Review(models.Model):
 
-    """
-    N:M 도시
-    city = models.ForeignKey(
-        models.city, related_name="review_city", on_delete=models.CASCADE
-    )
-    """
-
     # 테마
     THEME_CHOICES = (
         (None, "선택"),
@@ -29,6 +22,7 @@ class Review(models.Model):
         ("가족여행", "가족여행"),
     )
     themes = models.CharField(max_length=10, choices=THEME_CHOICES, default="")
+
     # 리뷰 도시들
     city = models.ManyToManyField(City, related_name="review_city", blank=True)
 
@@ -47,20 +41,21 @@ class Review(models.Model):
     subtitle = models.CharField(max_length=80)
 
     # 썸네일 이미지
-    image = ProcessedImageField(
+    thumbnail_image = ProcessedImageField(
         upload_to="media/",
         blank=True,
         processors=[ResizeToFill(300, 400)],
         format="JPEG",
         options={"quality": 60},
     )
-    # 메인 이미지
-    # main_image = ProcessedImageField(
-    #     upload_to="avatars",
-    #     processors=[ResizeToFill(720, 480)],
-    #     format="JPEG",
-    #     options={"quality": 100},
-    # )
+    # 리뷰 이미지
+    review_image = ProcessedImageField(
+        upload_to="media/",
+        blank=True,
+        processors=[ResizeToFill(720, 480)],
+        format="JPEG",
+        options={"quality": 100},
+    )
     # 작성시간
     created_at = models.DateTimeField(auto_now_add=True)
 

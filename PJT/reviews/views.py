@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from . import forms
-from django.http import JsonResponse
 from django.db.models import Count
 from .models import Review
 from django.contrib.auth.decorators import login_required
@@ -36,11 +35,13 @@ def create(request):
 
     if request.method == "POST":
         form = forms.ReviewForm(request.POST, request.FILES)
+        if request.method == "POST":
+            form = forms.ReviewForm(request.POST, request.FILES)
         if form.is_valid():
             review = form.save(commit=False)
             review.user = request.user
             review.save()
-
+            form.save()
             return redirect("reviews:index")
 
     else:
@@ -61,6 +62,7 @@ def detail(request, review_pk):
 @login_required(login_url="accounts:login")
 def update(request, review_pk):
     review = get_object_or_404(models.Review, pk=review_pk)
+
     # 리뷰 작성자가 아니면 수정 권한 없음
     if request.user != review.user:
         messages.error(request, "권한이 없습니다.")
@@ -70,8 +72,7 @@ def update(request, review_pk):
         form = forms.ReviewForm(request.POST, request.FILES, instance=review)
         if form.is_valid():
             form.save()
-            return redirect("reviews:detail", review_pk)
-
+            return redirect("reviews:index")
     else:
         form = forms.ReviewForm(instance=review)
 

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0"/>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,300,0,0" />
 
 {% block content %}
   <div class="container">
@@ -49,12 +50,14 @@
               </li>
               <li class="">
                 <span style="font-size: 1.3rem; margin:0 1rem;">{{ review.like.all | length  }}
+
                 </span>
               </li>
             </ul>
           </div>
         </div>
       </div>
+
     </div>
   </div>
   <p class="mt-5" style="font-size:1.2rem;">{{ review.content }}</p>
@@ -67,3 +70,4 @@
   {% endif %}
 </div>
 {% endblock content%}
+
