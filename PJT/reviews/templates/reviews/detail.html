@@ -6,12 +6,12 @@
 
   <div class=" mx-5 my-3">
     <div class="container">
-      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb" style="margin-left: 145px; font-size: 14px;">
+      <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="{% url 'reviews:index' %}">여행지</a>
           </li>
-          <li class="breadcrumb-item">
+          <li class="breadcrumb-item active" aria-current="page">
             <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
           </li>
         </ol>
@@ -30,45 +30,36 @@
           <span class="crad-text badge rounded-pill text-bg-secondary">{{ review.themes }}</span>
         </p>
         <p class="card-text">
-          <small>
-            <a href="{% url 'reviews:like' review.pk %}">
+          <small>         
               <img style="width: 25px;" src="{% static 'images/heart.png' %}" alt="">
-            </a>
             <span style="color: white; position: absolute; font-size: 18px; margin-left: 02px; margin-top:0px;">{{ review.like.all | length  }}</span></small>
         </p>
       </div>
     </div>
   </div>
-  <div class="d-flex my-5 grid justify-content-center" style="--bs-columns: 10; --bs-gap: 1rem;">
-    <div class="card text-center g-col-6" style="width: 700px;">
+  <div class="d-flex my-1 grid justify-content-center" style="--bs-columns: 10; --bs-gap: 1rem;">
+    <div class="card text-center g-col-6" style="width: 1000px;">
       <div class="card-header">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">내용</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-              <a href="{% url 'articles:community' %}">커뮤니티</a>
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">지도</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled="disabled"></button>
-          </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="height:400px;">{{ review.content }}</div>
-          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-          <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0" style="height:500px;">
-            <div id="map" style="width:100%;height:500px;"></div>
-          </div>
+          <div class="tab-pane fade show active my-4" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="height:400px;">{{ review.content }}</div>
         </div>
+        </div>
+        <div class="d-grid gap-2 d-md-block">
+          <a href="{% url 'reviews:update' review.pk %}">
+          <button class="btn btn-outline-primary mx-2" type="button">수정하기</button>
+        </a>
+        <a href="{% url 'reviews:update' review.pk %}">
+          <button class="btn btn-outline-primary " type="button">삭제하기</button>
+        </a>
       </div>
     </div>
-    <img src="{{ review.image.url }}" alt="">
+    
   </div>
 
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f53687f99d0ba2cb683a2427e900bb2e"></script>
