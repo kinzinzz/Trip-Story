@@ -103,7 +103,7 @@ def like(request, review_pk):
     else:
         review.like.add(request.user)
 
-    return redirect("reviews:index")
+    return redirect("reviews:detail", review_pk)
 
 
 # 리뷰 도시별 조회

@@ -55,9 +55,9 @@
             {{ review.title }}</span>
           <!-- 리뷰 이미지 -->
           <a href="{% url 'reviews:detail' review.pk %}">
-            {% if review.image %}
+            {% if review.thumbnail_image %}
             <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
-              src="{{ review.image.url }}" class="card-img-top" alt="...">
+              src="{{ review.thumbnail_image.url }}" class="card-img-top" alt="...">
             {% else %}
             <img style="filter: brightness(70%); object-fit: cover; width: 100%; height: 200px; z-index:0; "
               src="{% static 'images/base_review.jpg' %}" class="card-img-top" alt="...">
@@ -115,35 +115,29 @@
     {% endif %}
     <!-- 페이지리스트 -->
     {% for page_number in pageboard.paginator.page_range %}
-<<<<<<< HEAD:reviews/templates/reviews/index.html
-    {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} <li
-      class="page-item active" aria-current="page">
-=======
-      {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} 
-        {% if page_number == pageboard.number %}
-    <li class="page-item active" aria-current="page" >
->>>>>>> bbe4816d7c333d6a01f37c6eff9b2b81d41753b8:PJT/reviews/templates/reviews/index.html
+    {% if page_number >= pageboard.number|add:-5 and page_number <= pageboard.number|add:5 %} 
+    {% if page_number == pageboard.number %} 
+    <li class="page-item active" aria-current="page">
       <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-      </li>
-      {% else %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-      </li>
-      {% endif %}
-      {% endfor %}
-      <!-- 다음페이지 -->
-      {% if pageboard.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ pageboard.next_page_number }}">다음</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-      </li>
-      {% endif %}
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    <!-- 다음페이지 -->
+    {% if pageboard.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ pageboard.next_page_number }}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+    </li>
+    {% endif %}
   </ul>
   <!-- 페이징처리 끝 -->
-</div>
-
 </div>
 {% endblock %}
