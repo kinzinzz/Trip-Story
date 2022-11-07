@@ -52,28 +52,40 @@
         <div class="col-3">
             <h2>{{ city.name }}날씨</h2>
 
-            <!-- 날씨 템플릿 -->
-            <!-- {% for weather in weather_data %}
-                    <div class="box">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-50x50">
-                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="날씨상태 아이콘"> 
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <span class="title">{{ weather.city }}</span>
-                                        <br>
-                                        <span class="subtitle">{{ weather.temperature }}° C</span>
-                                        <br> {{ weather.description }} 
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
+            <!-- 도시별 날씨 예보 -->
+            <div class="conatainer">
+                <div class="card text-center mb-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">오늘: {{ 월 }}/{{ 일 }}</h5>
+                        <div class="">
+                            <p class="card-text">현재날씨 <br>{{ temp_data.현재날씨 }}</p>
+                            <p></p>
+                        </div>
                     </div>
-                    {% endfor %} -->
+                </div>
+                <div class="card text-center mb-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">내일: {{ 월 }}/{{ 일|add:1 }}</h5>
+                        <div class="d-flex justify-content-evenly">
+                            <p class="card-text">오전 <br>{{ temp_data.am_내일날씨 }}</p>
+                            <p class="card-text">오후 <br>{{ temp_data.pm_내일날씨 }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center mb-1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">모레: {{ 월 }}/{{ 일|add:2 }}</h5>
+                        <div class="d-flex justify-content-evenly">
+                            <p class="card-text">오전 <br>{{ temp_data.am_모레날씨 }}</p>
+                            <p class="card-text">오후 <br>{{ temp_data.pm_모레날씨 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 도시별 날씨 예보 -->
+
+
+
         </div>
     </div>
 </div>
