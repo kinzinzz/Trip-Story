@@ -10,26 +10,30 @@ from places.models import City
 from django.contrib import messages
 
 from django.db.models import Q
-
+from places.models import City
 
 
 # 리뷰 인덱스
 def index(request):
     # 페이징 처리
-    page = request.GET.get('page','1')
+    # like 많은순으로 정렬하고 0~2등 가져오기
+
+    page = request.GET.get("page", "1")
     page_li = Review.objects.all()
     pag = page_li.annotate(like_count=Count("like"))
-    page_ = pag.order_by("-like_count")
+    page_ = pag.order_by("-pk")  # 작성 순으로 바꿨습니다.
     paginator = Paginator(page_, 6)
     page_obj = paginator.get_page(page)
+
     
 
     context = {
         "pageboard":page_obj,
         
     }
+
     # like 많은순으로 정렬하고 0~2등 가져오기
-     # reviews = (
+    # reviews = (
     #     models.Review.objects.all()
     #     .annotate(like_count=Count("like"))
     #     .order_by("-like_count")[0:6]
@@ -115,15 +119,14 @@ def like(request, review_pk):
 
 
 # 리뷰 도시별 조회
-def search(request, kw):
+def search_reviews(request, city_name):
 
-    if "kw" in request.GET:
-        query = request.GET.get("kw")
-        reviews = (
-            models.Review.objects.all()
-            .filter(Q(city__icontains=query))
-            .order_by("-created_at")
-        )
+    query = city_name
+    reviews = (
+        models.Review.objects.all()
+        .filter(Q(city__icontains=query))
+        .order_by("-created_at")
+    )
 
     return render(request, "reviews/search.html", {"reviews": reviews})
 # 좋아요 기능 비동기

@@ -58,6 +58,12 @@ class City(models.Model):
         format="JPEG",
         options={"quality": 80},
     )
+    hits = models.PositiveIntegerField(default=0)
+
+    @property
+    def update_hits(self):
+        self.hits = self.hits + 1
+        self.save()
 
 
 class Spotcomment(models.Model):

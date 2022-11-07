@@ -12,19 +12,20 @@
     align-items: center;
     ">
 
-    <h1 class="main-title">Let's Go!
+    <h1 class="main-title" id="main-title">Let's Go!
     </h1>
 </div>
 <div class="container">
     <h2 class="text-center content-title"> 여행지 </h2>
     <p class="content-sub-title text-center">여행지 별로 인기 장소를 찾아보세요</p>
-    <div class="btn-group btn-group-lg w-100 choice-place" role="group" aria-label="Large button group">
+    <div class="btn-group btn-group-lg choice-place" role="group" aria-label="Large button group">
         <button type="button" class="btn btn-dark fw-bold">주요 도시</button>
         {% for city in citys %}
-        <button type="button" class="btn btn-outline-dark" onclick="location.href='{% url 'places:city' city.name %}' ">{{ city.name }}</button>
+        <button type="button" class="btn btn-outline-dark"
+            onclick="location.href='{% url 'places:city' city.name %}' ">{{ city.name }}</button>
         {% endfor %}
     </div>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.is_admin %}
     <div class="d-grid gap-2 mt-3">
         <button class="btn btn-dark" type="button" onclick="location.href='{% url 'places:citycreate' %}' ">도시
             추가 +</button>
@@ -33,13 +34,13 @@
     <h2 class="content-title text-center"> 인기 여행지 TOP 3 </h2>
     <p class="content-sub-title text-center">다른 여행자들의 인기 여행지를 참고해보세요!</p>
     <div class='d-flex justify-content-evenly row'>
-        {% for city in citys %}
+        {% for city in city3 %}
         <div class="card inform-card col-4 shadow" style="width: 18rem;">
-            <img src="{{ city.thumbnail.url }}" class="card-img-top mt-2" alt="...">
-            <img src="{% static 'images/인스타 디자인.png' %}" class="card-img-top inform-card mt-2" alt="...">
+            <img src="{{ city.thumbnail.url }}" class="card-img-top" alt="...">
+            <img src="{% static 'images/인스타 디자인.png' %}" class="card-img-top" alt="...">
             <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="card-title text-center">#{{city.name}} #핫플 #인생여행지 </h5>
-                <p class="card-text">{{ city.content }}</p>
+                <p class="card-text">조회수 : {{ city.hits }}</p>
                 <a href="{% url 'places:city' city.name %}" class="btn btn-outline-dark">여행지 이동</a>
             </div>
         </div>

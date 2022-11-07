@@ -10,4 +10,5 @@ urlpatterns = [
     path("<nickname>", views.profile, name="profile"),
     path("update/", views.update, name="update"),
     path("<int:user_pk>/follow/", views.follow, name="follow"),
+    path("<nickname>/review", views.usereview, name="usereview"),
 ]

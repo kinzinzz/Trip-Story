@@ -15,40 +15,33 @@
 </div>
 <div class="container">
     <div id="carouselExampleCaptions" class="carousel slide spot-carousel" data-bs-ride="false">
-        {% comment %} <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-        </div> {% endcomment %}
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ spot.image.url }}" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 class="main-title-sub carousel-font carousel-title">{{ spot.city.name }}</h5>
-                    <p class="carousel-font">Some representative placeholder content for the first slide.</p>
+                <div class="carousel-caption d-md-block spot-font-bg">
+                    <h5 class="main-title-sub carousel-font carousel-title text-start">{{ spot.title }}</h5>
+                    <ul class="place-inform-lst d-flex justify-content-evenly carousel-font">
+                        <li>
+                            <span><span class="fw-bold">평점 ·</span>
+                                <span>
+                                    <span class="text-warning fw-bold">{{ star }}</span>
+                                    <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
+                        <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
+                        <li><span class="fw-bold">작성자 : <img
+                                    style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;"
+                                    src="{{ spot.user.profile_image.url }}" alt=""></span><span>
+                                {{ spot.user.nickname }}</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="mt-5">{{ spot.title }}</h1>
-    <br>
-    <hr>
-    <ul class="place-inform-lst d-flex justify-content-evenly">
-        <li>
-            <span><span class="fw-bold">평점 ·</span>
-                <span>
-                    <span class="text-warning fw-bold">{{ star }}</span>
-                    <span class="small"> · {{ avg }}점 ({{ comments|length }}명 평가)</span>
-                </span>
-            </span>
-        </li>
-        <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
-        <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
-        <li><span class="fw-bold">작성자 : </span><span>{{ spot.user.nickname }}</span></li>
-    </ul>
-    <hr>
-    <p>{{ spot.content }}</p>
+
+    <p class="mt-5" style="font-size:1.4rem;">{{ spot.content }}</p>
     <br>
     {% if user == spot.user %}
     <div class="d-flex justify-content-end">
@@ -69,17 +62,26 @@
                     {% bootstrap_field comment_form.grade %}
                 </div>
                 <div class="col-1 align-middle">
-                    <input class="btn btn-small btn-success " type="submit">
+                    <input class="btn btn-small btn-dark" type="submit">
                 </div>
             </div>
         </form>
-        <ul class="list-group list-group-flush rounded-2">
+        <ul class="list-group list-group-flush rounded-5">
             {% for comment in comments %}
-            <li class="list-group-item align-middle">
+            <li class="list-group-item align-middle rounded-4 my-1 border shadow comment-card">
                 <div class="d-flex justify-content-between align-items-center">
                     <a class="text-black text-decoration-none"
                         href="{% url 'accounts:profile' comment.user.nickname %}">
-                        <p class="card-text text-muted m-2">{{ comment.user.nickname }}</p>
+                        <div class="card-text text-muted m-2 d-flex align-bottom">
+                            {% if comment.user.profile_image %}
+                            <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                                src="{{ comment.user.profile_image.url }}" alt="">
+                            {% else %}
+                            <img style="width:2rem; overflow: hidden; height:2rem;  border-radius: 100%; object-fit: cover;"
+                                src="{% static 'images/logo.png' %}" alt="">
+                            {% endif %}
+                            <p class="pt-1 ps-1">{{ comment.user.nickname }}</p>
+                        </div>
                     </a>
                     <p class="card-text text-muted pt-3">{{ comment.created_at }}</p>
                 </div>
@@ -105,7 +107,8 @@
                     {% if request.user == comment.user %}
                     <form action="{% url 'places:comment_delete' spot.city.name spot.pk comment.pk %}" method="POST">
                         {% csrf_token %}
-                        <input class="text-danger bg-white ms-3 border-1 border-danger text-decoration-none rounded-2"
+                        <input
+                            class="text-danger bg-white ms-3 mb-3 border-1 border-danger text-decoration-none rounded-2"
                             type="submit" value="삭제">
                     </form>
                     {% endif %}
