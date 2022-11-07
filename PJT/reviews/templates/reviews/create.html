@@ -3,12 +3,23 @@
 {% block content %}
 {% load django_bootstrap5 %}
 
-<div class="container">
-    <form action="" method="POST" enctype="multipart/form-data">
+{% comment %} <div class="container">
+    <form class="mt-5" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% bootstrap_button button_type="submit" content="리뷰작성" %}
     </form>
+</div> {% endcomment %}
+<div class="container d-flex justify-content-center py-5">
+    <div class="col-9 border border-black rounded-1">
+        <h1 class="text-center mt-5 mb-3 fs-3 fw-bold">여행 리뷰를 작성해보세요!</h1>
+        <div class="card-body">
+            <form action="" method="POST" class="px-5 py-3 d-flex flex-column" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" class="btn btn-dark align-self-center" value="리뷰작성">
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
