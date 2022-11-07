@@ -20,8 +20,8 @@
                 <img src="{{ spot.image.url }}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-md-block spot-font-bg">
                     <h5 class="main-title-sub carousel-font carousel-title text-start">{{ spot.title }}</h5>
-                    <ul class="place-inform-lst d-flex justify-content-evenly carousel-font">
-                        <li>
+                    <ul class="place-inform-lst d-flex justify-content-evenly carousel-font row">
+                        <li class="col-12 col-xl-3">
                             <span><span class="fw-bold">평점 ·</span>
                                 <span>
                                     <span class="text-warning fw-bold">{{ star }}</span>
@@ -29,9 +29,9 @@
                                 </span>
                             </span>
                         </li>
-                        <li><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
-                        <li><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
-                        <li><span class="fw-bold">작성자 : <img
+                        <li class="col-12 col-xl-3"><span class="fw-bold">도시 : </span><span>{{ spot.city.name }}</span></li>
+                        <li class="col-12 col-xl-3"><span class="fw-bold">테마 : </span><span>{{ spot.themes }}</span></li>
+                        <li class="col-12 col-xl-3"><span class="fw-bold">작성자 : <img
                                     style="margin:0 0.7rem 0.4rem 1rem; width:30px; overflow: hidden; height:30px;  border-radius: 100%; object-fit: cover;"
                                     src="{{ spot.user.profile_image.url }}" alt=""></span><span>
                                 {{ spot.user.nickname }}</span></li>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <p class="mt-5" style="font-size:1.4rem;">{{ spot.content }}</p>
+    <p class="mt-5" style="font-size:1.1rem;">{{ spot.content }}</p>
     <br>
     {% if user == spot.user %}
     <div class="d-flex justify-content-end">
