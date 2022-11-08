@@ -189,10 +189,9 @@
 
 
 
-
 # 메인
 
-![1.메인페이지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\1.메인페이지.gif)
+![1.메인페이지](README.assets\1.메인페이지.gif)
 
 
 
@@ -203,7 +202,7 @@
 ---
 
 # 여행지
-![2.여행지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\2.여행지.gif)
+![2.여행지](README.assets\2.여행지.gif)
 
 
 
@@ -211,7 +210,7 @@
 
 ### 지역별 디테일
 
-![3. 지역별 디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\3. 지역별 디테일.gif)
+![3. 지역별 디테일](README.assets\3. 지역별 디테일.gif)
 
 
 
@@ -219,7 +218,7 @@
 
 ### 장소 추가하기
 
-![4.장소추가](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\4.장소추가.gif)
+![4.장소추가](README.assets\4.장소추가.gif)
 
 
 
@@ -227,7 +226,7 @@
 
 ### 관광지 전체보기
 
-![5. 인기관광지 더보기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\5. 인기관광지 더보기.gif)
+![5. 인기관광지 더보기](README.assets\5. 인기관광지 더보기.gif)
 
 
 
@@ -235,7 +234,7 @@
 
 ### 핫플 정보
 
-![6. 스팟디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\6. 스팟디테일.gif)
+![6. 스팟디테일](README.assets\6. 스팟디테일.gif)
 
 
 
@@ -243,7 +242,7 @@
 
 ### 브레드 크럼(뒤로가기)
 
-![7. 브레드크럼](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\7. 브레드크럼.gif)
+![7. 브레드크럼](README.assets\7. 브레드크럼.gif)
 
 
 
@@ -256,12 +255,12 @@
 ---
 
 # 리뷰
-![8. 리뷰페이지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\8. 리뷰페이지.gif)
+![8. 리뷰페이지](README.assets\8. 리뷰페이지.gif)
 
 ---
 
 ### 리뷰 작성하기
-![9.리뷰작성하기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\9.리뷰작성하기.gif)
+![9.리뷰작성하기](README.assets\9.리뷰작성하기.gif)
 
 
 
@@ -269,7 +268,7 @@
 
 ### 리뷰 디테일
 
-![10.리뷰디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\10.리뷰디테일.gif)
+![10.리뷰디테일](README.assets\10.리뷰디테일.gif)
 
 
 
@@ -284,7 +283,7 @@
 ---
 
 # 커뮤니티
-![11.커뮤니티](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\11.커뮤니티.gif)
+![11.커뮤니티](README.assets\11.커뮤니티.gif)
 
 
 
@@ -292,7 +291,7 @@
 
 ### 커뮤니티 글쓰기
 
-![커뮤니티 글쓰기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\12.커뮤니티글쓰기.gif)
+![커뮤니티 글쓰기](README.assets\12.커뮤니티글쓰기.gif)
 
 
 
@@ -306,7 +305,7 @@
 
 # 기타 기능
 ### 프로필
-![13.프로필](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\13.프로필.gif)
+![13.프로필](README.assets\13.프로필.gif)
 
 
 
@@ -314,7 +313,7 @@
 
 ### 검색 기능
 
-![15.검색기능](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\15.검색기능.gif)
+![15.검색기능](README.assets\15.검색기능.gif)
 
 
 
@@ -322,7 +321,7 @@
 
 ### 프로필 클릭 시 해당 프로필 정보로 이동
 
-![16.프로필클릭](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\16.프로필클릭.gif)
+![16.프로필클릭](README.assets\16.프로필클릭.gif)
 
 
 
@@ -330,7 +329,7 @@
 
 ### 팔로우 기능
 
-![17.팔로우](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\17.팔로우.gif)
+![17.팔로우](README.assets\17.팔로우.gif)
 
 
 
@@ -338,7 +337,7 @@
 
 ### 좋아요 기능
 
-![18.좋아요](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\18.좋아요.gif)
+![18.좋아요](README.assets\18.좋아요.gif)
 
 
 
