@@ -3,7 +3,9 @@
 
 
 
-**[웹 사이트 주소]** 👉 https://ktripstory.herokuapp.com/=
+**[웹 사이트 주소]** 👉 https://ktripstory.herokuapp.com/
+
+
 
 ---
 # 😉 팀원 💯
@@ -189,10 +191,9 @@
 
 
 
-
 # 메인
 
-![1.메인페이지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\1.메인페이지.gif)
+![1.메인페이지](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/1.%EB%A9%94%EC%9D%B8%ED%8E%98%EC%9D%B4%EC%A7%80.gif?raw=true)
 
 
 
@@ -203,7 +204,7 @@
 ---
 
 # 여행지
-![2.여행지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\2.여행지.gif)
+![2.여행지](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/2.%EC%97%AC%ED%96%89%EC%A7%80.gif?raw=true)
 
 
 
@@ -211,7 +212,7 @@
 
 ### 지역별 디테일
 
-![3. 지역별 디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\3. 지역별 디테일.gif)
+![3. 지역별 디테일](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/3.%20%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%94%94%ED%85%8C%EC%9D%BC.gif?raw=true)
 
 
 
@@ -219,7 +220,7 @@
 
 ### 장소 추가하기
 
-![4.장소추가](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\4.장소추가.gif)
+![4.장소추가](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/4.%EC%9E%A5%EC%86%8C%EC%B6%94%EA%B0%80.gif?raw=true)
 
 
 
@@ -227,7 +228,7 @@
 
 ### 관광지 전체보기
 
-![5. 인기관광지 더보기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\5. 인기관광지 더보기.gif)
+![5. 인기관광지 더보기](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/5.%20%EC%9D%B8%EA%B8%B0%EA%B4%80%EA%B4%91%EC%A7%80%20%EB%8D%94%EB%B3%B4%EA%B8%B0.gif?raw=true)
 
 
 
@@ -235,7 +236,7 @@
 
 ### 핫플 정보
 
-![6. 스팟디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\6. 스팟디테일.gif)
+![6. 스팟디테일](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/6.%20%EC%8A%A4%ED%8C%9F%EB%94%94%ED%85%8C%EC%9D%BC.gif?raw=true)
 
 
 
@@ -243,7 +244,7 @@
 
 ### 브레드 크럼(뒤로가기)
 
-![7. 브레드크럼](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\7. 브레드크럼.gif)
+![7. 브레드크럼](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/7.%20%EB%B8%8C%EB%A0%88%EB%93%9C%ED%81%AC%EB%9F%BC.gif?raw=true)
 
 
 
@@ -256,12 +257,12 @@
 ---
 
 # 리뷰
-![8. 리뷰페이지](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\8. 리뷰페이지.gif)
+![8. 리뷰페이지](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/8.%20%EB%A6%AC%EB%B7%B0%ED%8E%98%EC%9D%B4%EC%A7%80.gif?raw=true)
 
 ---
 
 ### 리뷰 작성하기
-![9.리뷰작성하기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\9.리뷰작성하기.gif)
+![9.리뷰작성하기](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/9.%EB%A6%AC%EB%B7%B0%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0.gif?raw=true)
 
 
 
@@ -269,7 +270,7 @@
 
 ### 리뷰 디테일
 
-![10.리뷰디테일](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\10.리뷰디테일.gif)
+![10.리뷰디테일](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/10.%EB%A6%AC%EB%B7%B0%EB%94%94%ED%85%8C%EC%9D%BC.gif?raw=true)
 
 
 
@@ -284,7 +285,7 @@
 ---
 
 # 커뮤니티
-![11.커뮤니티](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\11.커뮤니티.gif)
+![11.커뮤니티](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/11.%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0.gif?raw=true)
 
 
 
@@ -292,7 +293,7 @@
 
 ### 커뮤니티 글쓰기
 
-![커뮤니티 글쓰기](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\12.커뮤니티글쓰기.gif)
+![커뮤니티 글쓰기](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/12.%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0%EA%B8%80%EC%93%B0%EA%B8%B0.gif?raw=true)
 
 
 
@@ -306,7 +307,7 @@
 
 # 기타 기능
 ### 프로필
-![13.프로필](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\13.프로필.gif)
+![13.프로필](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/13.%ED%94%84%EB%A1%9C%ED%95%84.gif?raw=true)
 
 
 
@@ -314,7 +315,7 @@
 
 ### 검색 기능
 
-![15.검색기능](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\15.검색기능.gif)
+![15.검색기능](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/15.%EA%B2%80%EC%83%89%EA%B8%B0%EB%8A%A5.gif?raw=true)
 
 
 
@@ -322,7 +323,7 @@
 
 ### 프로필 클릭 시 해당 프로필 정보로 이동
 
-![16.프로필클릭](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\16.프로필클릭.gif)
+![16.프로필클릭](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/16.%ED%94%84%EB%A1%9C%ED%95%84%ED%81%B4%EB%A6%AD.gif?raw=true)
 
 
 
@@ -330,7 +331,7 @@
 
 ### 팔로우 기능
 
-![17.팔로우](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\17.팔로우.gif)
+![17.팔로우](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/17.%ED%8C%94%EB%A1%9C%EC%9A%B0.gif?raw=true)
 
 
 
@@ -338,7 +339,7 @@
 
 ### 좋아요 기능
 
-![18.좋아요](C:\Users\kjunh\OneDrive\바탕 화면\새 폴더\Trip-Story\README.assets\18.좋아요.gif)
+![18.좋아요](https://github.com/Pangpyo/Trip-Story/blob/master/README.assets/18.%EC%A2%8B%EC%95%84%EC%9A%94.gif?raw=true)
 
 
 
@@ -381,3 +382,5 @@
 - 혼자 할 때보다 더 많은 기능 구현을 할 수 있었다.
 - 어려운 문제를 팀원이 같이 해결하면서 미처 몰랐던 부분을 배웠다.
 - git 사용법이 익숙해졌다.
+```
+
