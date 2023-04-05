@@ -213,7 +213,7 @@
 
 ### 지역별 디테일
 
-![3. 지역별 디테일](README.assets\3. 지역별 디테일-16680954047906.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230140454-5ac9df27-dfe3-4fcd-b8e8-4768d2e6fb95.gif">
 
 
 
