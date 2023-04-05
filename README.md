@@ -221,7 +221,7 @@
 
 ### 장소 추가하기
 
-<img src="https://user-images.githubusercontent.com/107156650/230144168-819cb341-5461-4183-8037-68532cbebe9b.gif)">
+<img src="https://user-images.githubusercontent.com/107156650/230144168-819cb341-5461-4183-8037-68532cbebe9b.gif">
 
 
 
