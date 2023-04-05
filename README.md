@@ -205,7 +205,7 @@
 ---
 
 # 여행지
-![2.여행지](README.assets\2.여행지-16680953806714.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230145928-2e7a1db0-bdfc-4fe6-a9a7-b1e840db3269.gif">
 
 
 
@@ -221,7 +221,7 @@
 
 ### 장소 추가하기
 
-![4.장소추가](README.assets\4.장소추가-16680954422098-166809545099810.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230144168-819cb341-5461-4183-8037-68532cbebe9b.gif)">
 
 
 
@@ -229,7 +229,7 @@
 
 ### 관광지 전체보기
 
-![5. 인기관광지 더보기](README.assets/5. 인기관광지 더보기-166809550499912.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230143284-6c7172ab-bdb7-4171-b5c9-7791319fbe93.gif">
 
 
 
@@ -237,14 +237,14 @@
 
 ### 핫플 정보
 
-![6. 스팟디테일](README.assets/6. 스팟디테일-166809564091114.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230142966-0712d93a-d00e-4898-8745-28b534eb618e.gif">
 
 
 ---
 
 ### 브레드 크럼(뒤로가기)
 
-![7. 브레드크럼](README.assets/7. 브레드크럼-166809565721916.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230143882-6a950857-4e86-4a17-a3f4-c12d1556fc0e.gif">
 
 
 
@@ -257,7 +257,7 @@
 ---
 
 # 리뷰
-![8. 리뷰페이지](README.assets/8. 리뷰페이지-166809568464818.gif)
+<img src="https://user-images.githubusercontent.com/107156650/230143618-b2a0addc-b652-4c36-b52e-84217e7a4804.gif">
 
 ---
 
